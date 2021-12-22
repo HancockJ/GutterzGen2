@@ -1,0 +1,25 @@
+# Enable rewrite engine and route requests to framework
+RewriteEngine On
+
+
+# ----------------------------------------------------------------------
+# | Handle Errors                                             |
+# ----------------------------------------------------------------------
+
+ErrorDocument 404 https://karmeleonsnft.com/404/
+ErrorDocument 500 https://karmeleonsnft.com/500/
+
+
+# ----------------------------------------------------------------------
+# | Set preferred domain                                               |
+# ----------------------------------------------------------------------
+
+# force https site-wide
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+#RewriteRule ^(.*)$ https://mint.karmeleonsnft.com/$1 [R,L]
+
+
+# force www
+#RewriteCond %{HTTP_HOST} ^mint.karmeleonsnft.com [NC]
+#RewriteRule ^(.*)$ http://mint.karmeleonsnft.com/$1 [R=301,L]
