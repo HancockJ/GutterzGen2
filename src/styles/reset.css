@@ -133,8 +133,8 @@ table {
   src: local("PxGrotesk Bold"), url(PxGrotesk-Bold.woff) format("woff");
 }
 @font-face {
-  font-family: "Chango Regular";
-  src: local("Chango Regular"), url(Chango-Regular.woff) format("woff");
+  font-family: "Teko Bold";
+  src: local("Teko Bold"), url(Teko-Bold.woff) format("woff");
 }
 
 body {
@@ -178,6 +178,6 @@ div {
 }
 
 button {
-  font-family: "Chango Regular", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+  font-family: "Teko Bold", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
   "Droid Sans", "Helvetica Neue", sans-serif;
 }

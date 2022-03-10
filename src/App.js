@@ -10,18 +10,21 @@ import {
 } from "react-router-dom";
 import * as s from "./styles/globalStyles";
 import styled from "styled-components";
+import ReactGA from 'react-ga';
+ReactGA.initialize('G-9BDLBFDQN8');
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 const truncate = (input, len) =>
   input.length > len ? `${input.substring(0, len)}...` : input;
 
 export const StyledButton = styled.button`
-  padding-top: 16px;
+  padding-top: 24px;
   padding-bottom: 16px;
   padding-right: 30px;
   padding-left: 30px;
   border-radius: 6px;
   border: none;
-  font-size: 22px;
+  font-size: 32px;
   background-color: var(--secondary);
   /*font-weight: bold;*/
   color: var(--secondary-text);
@@ -79,8 +82,7 @@ export const StyledLogo = styled.img`
   @media (min-width: 767px) {
     width: 520px;
   }
-  transition: width 0.5s;
-  transition: height 0.5s;
+
 `;
 
 export const StyledImg = styled.img`
@@ -89,14 +91,16 @@ export const StyledImg = styled.img`
   background-color: var(--accent);
   border-radius: 100%;
   border: 8px solid #333;
-  width: 200px;
+  display: none;
   @media (min-width: 900px) {
+    display: flex;
     width: 250px;
   }
   @media (min-width: 1000px) {
+    display: flex;
     width: 300px;
   }
-  transition: width 0.5s;
+  
 `;
 
 export const StyledLink = styled.a`
@@ -155,7 +159,7 @@ function App() {
       .then((receipt) => {
         console.log(receipt);
         setFeedback(
-          `Dope. Your ${CONFIG.NFT_NAME} is yours! Visit Opensea.io to view it.`
+          `Dope. Your ${CONFIG.NFT_NAME} is yours! View your wallet on Opensea.io for instant reveal.`
         );
         setClaimingNft(false);
         dispatch(fetchData(blockchain.account));
@@ -172,8 +176,8 @@ function App() {
 
   const incrementMintAmount = () => {
     let newMintAmount = mintAmount + 1;
-    if (newMintAmount > 5) {
-      newMintAmount = 5;
+    if (newMintAmount > 3) {
+      newMintAmount = 3;
     }
     setMintAmount(newMintAmount);
   };
@@ -211,14 +215,12 @@ function App() {
         style={{ padding: 24, backgroundColor: "var(--primary)" }}
         image={CONFIG.SHOW_BACKGROUND ? "/setup/images/bg.png" : null}
       >
-      
-
         <a href="https://karmeleonsnft.com">
-        <img class="logo" src="/setup/images/logo.png" alt="Karmeleons NFT" />
+        <img className="logo" src="/setup/images/logo.png" alt="Karmeleons NFT" />
         </a>
        
         <s.SpacerSmall />
-        <ResponsiveWrapper flex={1} style={{ padding: 24 }} test>
+        <ResponsiveWrapper flex={1} style={{ padding: 0 }} test>
           <s.Container flex={1} jc={"center"} ai={"center"}>
             <StyledImg alt={"example"} src={"/setup/images/karmeleon-left.png"} />
           </s.Container>
@@ -241,16 +243,47 @@ function App() {
               }}
               alt={"logo"} src={"/setup/images/logo512.png"} />
           <s.SpacerSmall />
-            <s.TextTitle
+            {blockchain.account === "" ||
+              blockchain.smartContract === null ? (
+                <s.TextTitle
               style={{
                 textAlign: "center",
-                fontSize: 50,
+                fontSize: 26,
+                marginBottom: 8,
+                lineHeight: 1.2,
                 fontFamily: "PxGrotesk Bold",
                 color: "var(--accent-text)",
               }}
-            >
-              {data.totalSupply} / {CONFIG.MAX_SUPPLY}
-            </s.TextTitle>
+              >
+                Connect first to see the current supply
+              </s.TextTitle>
+              ) : ( 
+                <s.TextTitle
+                  style={{
+                    textAlign: "center",
+                    fontSize: 50,
+                    fontFamily: "PxGrotesk Bold",
+                    color: "var(--accent-text)",
+                  }}
+                >
+                  {data.totalSupply} / {CONFIG.MAX_SUPPLY}
+                </s.TextTitle>
+              )}
+              {blockchain.account === "" || 
+                blockchain.smartContract === null ? (
+                  ""
+                  ) : ( 
+                  <s.TextDescription
+                  style={{
+                    textAlign: "center",
+                    color: "var(--primary-text)",
+                    marginBottom: "10px"
+                  }}
+                  >
+                  <p>&hellip;have been minted</p>
+                  </s.TextDescription>
+              )}
+
             <s.TextDescription
               style={{
                 textAlign: "center",
@@ -282,7 +315,7 @@ function App() {
             ) : (
               <>
                 <s.TextTitle
-                  style={{ textAlign: "center", color: "var(--accent-text)" }}
+                  style={{ textAlign: "center", color: "#888" }}
                 >
                   1 {CONFIG.SYMBOL} costs {CONFIG.DISPLAY_COST}{" "}
                   {CONFIG.NETWORK.SYMBOL}
@@ -381,7 +414,7 @@ function App() {
                           getData();
                         }}
                       >
-                        {claimingNft ? "CONNECTING..." : "BUY"}
+                        {claimingNft ? "CONNECTING..." : "MINT"}
                       </StyledButton>
                     </s.Container>
                   </>

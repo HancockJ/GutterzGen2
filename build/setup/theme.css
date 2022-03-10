@@ -1,12 +1,18 @@
 :root {
   --primary: #000;
   --primary-text: #999;
-  --secondary: #9e529a;
-  --secondary-text: #ffffff;
+  --secondary: #5ADBFF;
+  --secondary-text: #094074;
   --accent: #212121;
   --accent-text: #f5f5f5;
+  --button-text: #094074;
 }
 
 .logo {
-  width: 480px;
+  max-width: 280px;
+  width: 100%;
+  height: auto;
+  @media (min-width: 767px) {
+    max-width: 480px;
+  }
 }
