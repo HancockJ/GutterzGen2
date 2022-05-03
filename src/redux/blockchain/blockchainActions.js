@@ -41,7 +41,7 @@ const providerOptions = {
     options: {
       infuraId: INFURA_ID, // required
       rpc: {
-        1: "https://mainnet.infura.io/v3/f04850f591404d189d50274dbf1e5c65" // ETH
+        1: "https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161" // ETH
       },
     },
   },
@@ -50,7 +50,7 @@ const providerOptions = {
     options: {
       appName: "Karmeleons NFT", // Required
       infuraId: INFURA_ID, // Required unless you provide a JSON RPC url; see `rpc` below
-      rpc: "https://mainnet.infura.io/v3/f04850f591404d189d50274dbf1e5c65", // Optional if `infuraId` is provided; otherwise it's required
+      rpc: "https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161", // Optional if `infuraId` is provided; otherwise it's required
       chainId: 1, // Optional. It defaults to 1 if not provided
       appLogoUrl: "https://mint.karmeleonsnft.com/setup/images/logo512.png", // Optional. Application logo image URL. favicon is used if unspecified
       darkMode: false, // Optional. Use dark theme, defaults to false
@@ -142,7 +142,7 @@ export const connect = () => {
         dispatch(connectFailed("Something went wrong."));
       }
     } else {
-      //dispatch(connectFailed("Install Metamask."));
+      //dispatch(connectFailed("Please install MetaMask to mint your NFT."));
 
       // wallet connect for coinbase wallet
       // adapted from https://github.com/HashLips/hashlips_nft_minting_dapp/issues/69
@@ -156,14 +156,14 @@ export const connect = () => {
         });
         const provider = await web3Modal.connect();
         const web3 = new Web3(provider);
-        console.log("web", web3);
+        //console.log("web", web3);
   
         Web3EthContract.setProvider(provider);
         const accounts = await web3.eth.getAccounts();
         const networkId = await provider.request({
           method: "net_version",
         });
-        console.log("networkId", networkId);
+        //console.log("networkId", networkId);
         if (networkId == CONFIG.NETWORK.ID) {
           const SmartContractObj = new Web3EthContract(
             abi,

@@ -135,6 +135,8 @@ function App() {
     SHOW_BACKGROUND: false,
   });
 
+  const tokensHeld = useSelector((msg) => msg.sender);
+
   const claimNFTs = () => {
     let cost = CONFIG.WEI_COST;
     let gasLimit = CONFIG.GAS_LIMIT;
@@ -281,7 +283,7 @@ function App() {
                     marginBottom: "10px"
                   }}
                   >
-                  <p>&hellip;have been minted</p>
+                  <p>&hellip;have been minted {tokensHeld}</p>
                   </s.TextDescription>
               )}
 
