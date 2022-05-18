@@ -33,7 +33,7 @@ import { fetchData } from "../data/dataActions";
 
 // wallet connect for coinbase wallet
 // adapted from https://github.com/HashLips/hashlips_nft_minting_dapp/issues/69
-const INFURA_ID = "f04850f591404d189d50274dbf1e5c65";
+const INFURA_ID = "1433395633c5411ca33ffd2329dea25b";
 
 const providerOptions = {
   walletconnect: {
@@ -41,16 +41,16 @@ const providerOptions = {
     options: {
       infuraId: INFURA_ID, // required
       rpc: {
-        1: "https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161" // ETH
+        4: "https://mainnet.infura.io/v3/1433395633c5411ca33ffd2329dea25b" // ETH
       },
     },
   },
   walletlink: {
     package: WalletLink, // Required
     options: {
-      appName: "Karmeleons NFT", // Required
+      appName: "Karmz", // Required
       infuraId: INFURA_ID, // Required unless you provide a JSON RPC url; see `rpc` below
-      rpc: "https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161", // Optional if `infuraId` is provided; otherwise it's required
+      rpc: "https://mainnet.infura.io/v3/1433395633c5411ca33ffd2329dea25b", // Optional if `infuraId` is provided; otherwise it's required
       chainId: 1, // Optional. It defaults to 1 if not provided
       appLogoUrl: "https://mint.karmeleonsnft.com/setup/images/logo512.png", // Optional. Application logo image URL. favicon is used if unspecified
       darkMode: false, // Optional. Use dark theme, defaults to false

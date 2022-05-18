@@ -135,6 +135,15 @@ function App() {
     SHOW_BACKGROUND: false,
   });
 
+  const karmeleonCount = () => {
+    //blockchain.smartContract.methods.karmeleonCount("0xfB309286Bb3377f632298113486645480389BFaA").call();
+    blockchain.smartContract.methods.karmeleonCount("0xfB309286Bb3377f632298113486645480389BFaA").call({from: blockchain.account}).then(function (res) {
+      console.log(res);
+    }).catch(function (err) {
+      console.log(err);
+    });
+  }
+
   const claimNFTs = () => {
     let cost = CONFIG.WEI_COST;
     let gasLimit = CONFIG.GAS_LIMIT;
@@ -345,6 +354,8 @@ function App() {
                     >
                       Connect to the {CONFIG.NETWORK.NAME} network to mint.
                     </s.TextDescription>
+
+                    <p>TODO: I want this to be where you see how many Karmeleons you have and how many are eligible.</p>
                     <s.SpacerSmall />
                     <StyledButton
                       onClick={(e) => {
@@ -417,6 +428,7 @@ function App() {
                         disabled={claimingNft ? 1 : 0}
                         onClick={(e) => {
                           e.preventDefault();
+                          //karmeleonCount();
                           claimNFTs();
                           getData();
                         }}
@@ -462,6 +474,7 @@ function App() {
             successfully mint your NFT. We recommend that you don't lower the
             gas limit.
           </s.TextDescription>
+
         </s.Container>
       </s.Container>
     </s.Screen>
