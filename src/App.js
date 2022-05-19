@@ -542,7 +542,7 @@ function App() {
           >
             <p>Enter the Karmeleon Token ID to see if it is eligible for a one-time Karmz claim.</p>
                 <div className="flex-container claim-check-wrapper">#&nbsp;
-                  <input type="text"
+                  <input type="number"
                          id="karmID"
                          name="karmID" 
                          className="claim-input" 
