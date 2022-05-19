@@ -114,8 +114,13 @@ function App() {
   const blockchain = useSelector((state) => state.blockchain);
   const data = useSelector((state) => state.data);
   const [claimingNft, setClaimingNft] = useState(false);
-  const [feedback, setFeedback] = useState(`Click mint to purchase your NFT.`);
-  const [mintAmount, setMintAmount] = useState(1);
+  const [feedback, setFeedback] = useState(`Click CLAIM to claim your free NFT(s)`);
+  const [mintAmount, setMintAmount] = useState(0);
+  const [karmeleonInfo, setKarmeleonInfo] = useState({
+    viewing: false,
+    totalCount: 0,
+    eligibleCount: 0
+  });
   const [CONFIG, SET_CONFIG] = useState({
     CONTRACT_ADDRESS: "",
     SCAN_LINK: "",
@@ -135,13 +140,19 @@ function App() {
     SHOW_BACKGROUND: false,
   });
 
-  const karmeleonCount = () => {
-    //blockchain.smartContract.methods.karmeleonCount("0xfB309286Bb3377f632298113486645480389BFaA").call();
+  const viewKarmeleonInfo = () => {
     blockchain.smartContract.methods.karmeleonCount("0xfB309286Bb3377f632298113486645480389BFaA").call({from: blockchain.account}).then(function (res) {
-      console.log(res);
+      setKarmeleonInfo({
+        viewing: true,
+        totalCount: res[0],
+        eligibleCount: res[1]
+      });
     }).catch(function (err) {
       console.log(err);
     });
+    console.log(karmeleonInfo.viewing);
+    console.log(karmeleonInfo.totalCount);
+    console.log(karmeleonInfo.eligibleCount);
   }
 
   const claimNFTs = () => {
@@ -185,11 +196,9 @@ function App() {
   };
 
   const incrementMintAmount = () => {
-    let newMintAmount = mintAmount + 1;
-    if (newMintAmount > 7) {
-      newMintAmount = 7;
+    if(karmeleonInfo.eligibleCount >= mintAmount + 1){
+      setMintAmount(mintAmount + 1);
     }
-    setMintAmount(newMintAmount);
   };
 
   const getData = () => {
@@ -324,25 +333,7 @@ function App() {
               </>
             ) : (
               <>
-                <s.TextTitle
-                  style={{ textAlign: "center", color: "#f1f1f1", fontFamily: "PxGrotesk Bold", textTransform: "uppercase",
-                   borderRadius: "100px", backgroundColor: "#999", fontSize: "18px", 
-                    paddingTop: "5px",
-                    paddingBottom: "3px",
-                    paddingLeft: "16px",
-                    paddingRight: "16px"
-                   }}
-                >
-                  1 {CONFIG.SYMBOL} costs {CONFIG.DISPLAY_COST}{" "}
-                  {CONFIG.NETWORK.SYMBOL}
-                </s.TextTitle>
-                <s.SpacerXSmall />
-                <s.TextDescription
-                  style={{ textAlign: "center", color: "var(--accent-text)" }}
-                >
-                  (Excluding gas fees)
-                </s.TextDescription>
-                <s.SpacerSmall />
+
                 {blockchain.account === "" ||
                 blockchain.smartContract === null ? (
                   <s.Container ai={"center"} jc={"center"}>
@@ -352,10 +343,8 @@ function App() {
                         color: "var(--accent-text)",
                       }}
                     >
-                      Connect to the {CONFIG.NETWORK.NAME} network to mint.
+                      Connect to the {CONFIG.NETWORK.NAME} network to view your NFT eligibility & mint.
                     </s.TextDescription>
-
-                    <p>TODO: I want this to be where you see how many Karmeleons you have and how many are eligible.</p>
                     <s.SpacerSmall />
                     <StyledButton
                       onClick={(e) => {
@@ -382,6 +371,18 @@ function App() {
                   </s.Container>
                 ) : (
                   <>
+                    <s.TextTitle
+                        style={{ textAlign: "center", color: "#f1f1f1", fontFamily: "PxGrotesk Bold", textTransform: "uppercase",
+                          borderRadius: "100px", backgroundColor: "#999", fontSize: "18px",
+                          paddingTop: "5px",
+                          paddingBottom: "3px",
+                          paddingLeft: "16px",
+                          paddingRight: "16px"
+                        }}
+                    > {karmeleonInfo.viewing ? null : viewKarmeleonInfo()}
+                      {karmeleonInfo.eligibleCount}/{karmeleonInfo.totalCount} Of your Karmeleons are still eligible for a free mint
+                    </s.TextTitle>
+                    <s.SpacerMedium />
                     <s.TextDescription
                       style={{
                         textAlign: "center",
@@ -427,13 +428,12 @@ function App() {
                       <StyledButton
                         disabled={claimingNft ? 1 : 0}
                         onClick={(e) => {
-                          e.preventDefault();
-                          //karmeleonCount();
+                          e.preventDefault();;
                           claimNFTs();
                           getData();
                         }}
                       >
-                        {claimingNft ? "CONNECTING..." : "MINT"}
+                        {claimingNft ? "CONNECTING..." : "CLAIM"}
                       </StyledButton>
                     </s.Container>
                   </>
@@ -451,7 +451,59 @@ function App() {
             />
           </s.Container>
         </ResponsiveWrapper>
+
+
         <s.SpacerMedium />
+{/*=======================================================================================================================================*/}
+{/*=====================================================CLAIM WINDOW======================================================================*/}
+{/*=======================================================================================================================================*/}
+        <s.Container className="mint-window"
+                     flex={2}
+                     jc={"center"}
+                     ai={"center"}
+                     style={{
+                       // backgroundColor: "var(--accent)",
+                       padding: 24,
+                       borderRadius: 24,
+                       //border: "4px dashed var(--secondary)",
+                       //boxShadow: "0px 5px 11px 2px rgba(0,0,0,0.7)",
+                     }}
+        >
+          <s.SpacerSmall />
+          <s.TextTitle
+              style={{
+                textAlign: "center",
+                fontSize: 26,
+                marginBottom: 8,
+                lineHeight: 1.2,
+                fontFamily: "PxGrotesk Bold",
+                color: "var(--accent-text)",
+              }}
+          >
+            NFT CLAIM CHECK
+          </s.TextTitle>
+          <s.TextDescription
+              style={{
+                textAlign: "center",
+                color: "var(--primary-text)",
+                marginBottom: "10px"
+              }}
+          >
+            <p>Enter the Karmeleon Token ID to see if it is eligible for a one-time Karmz claim.</p>
+                <div className="flex items-center">#&nbsp;
+                  <input type="number"
+                         className=""
+                         max={CONFIG.MAX_SUPPLY} />
+                  <button className="btn btn-small ">Check</button>
+                </div>
+
+          </s.TextDescription>
+          <s.SpacerMedium />
+        </s.Container>
+{/*=======================================================================================================================================*/}
+{/*=====================================================CLAIM WINDOW======================================================================*/}
+{/*=======================================================================================================================================*/}
+        <s.SpacerLarge />
         <s.Container jc={"center"} ai={"center"} style={{ width: "60%" }}>
           <s.TextDescription
             style={{
