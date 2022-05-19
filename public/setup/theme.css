@@ -72,6 +72,13 @@ body {
   width: 100px;
   border: none;
   border-radius: 6px;
+  margin-bottom: 12px;
+  text-align: center;
+}
+@media (min-width: 900px) {
+  .claim-input {
+    margin-bottom: 0;
+  }
 }
 
 .claim-check-wrapper {
@@ -81,4 +88,21 @@ body {
   margin-top: 20px;
   margin-bottom: 20px;
   font-size: 24px;
+  flex-direction: column;
+
+}
+@media (min-width: 900px) {
+  .claim-check-wrapper {
+    flex-direction: row;
+    color: #999;
+  }
+}
+.claim-button {
+  font-family: "PxGrotesk Bold", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+  "Droid Sans", "Helvetica Neue", sans-serif;
+  letter-spacing: normal;
+}
+.eligible-count {
+  font-size: 32px;
+  color: #72ab65;
 }

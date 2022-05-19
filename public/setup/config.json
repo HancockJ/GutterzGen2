@@ -7,12 +7,12 @@
     "ID": 4
   },
   "NFT_NAME": "Karmz",
-  "SYMBOL": "KMLNS",
+  "SYMBOL": "KRMZ",
   "MAX_SUPPLY": 3333,
   "WEI_COST": 0,
   "DISPLAY_COST": 0.0,
   "GAS_LIMIT": 285000,
   "MARKETPLACE": "OpenSea",
-  "MARKETPLACE_LINK": "https://opensea.io/collection/karmeleons",
+  "MARKETPLACE_LINK": "https://opensea.io/collection/karmz",
   "SHOW_BACKGROUND": true
 }
