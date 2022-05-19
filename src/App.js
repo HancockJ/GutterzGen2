@@ -141,7 +141,7 @@ function App() {
   });
 
   const viewKarmeleonInfo = () => {
-    blockchain.smartContract.methods.karmeleonCount("0xfB309286Bb3377f632298113486645480389BFaA").call({from: blockchain.account}).then(function (res) {
+    blockchain.smartContract.methods.karmeleonCount(blockchain.account).call({from: blockchain.account}).then(function (res) {
       setKarmeleonInfo({
         viewing: true,
         totalCount: res[0],
@@ -371,71 +371,89 @@ function App() {
                   </s.Container>
                 ) : (
                   <>
-                    <s.TextTitle
-                        style={{ textAlign: "center", color: "#f1f1f1", fontFamily: "PxGrotesk Bold", textTransform: "uppercase",
-                          borderRadius: "100px", backgroundColor: "#999", fontSize: "18px",
-                          paddingTop: "5px",
-                          paddingBottom: "3px",
-                          paddingLeft: "16px",
-                          paddingRight: "16px"
-                        }}
-                    > {karmeleonInfo.viewing ? null : viewKarmeleonInfo()}
-                      {karmeleonInfo.eligibleCount}/{karmeleonInfo.totalCount} Of your Karmeleons are still eligible for a free mint
-                    </s.TextTitle>
-                    <s.SpacerMedium />
-                    <s.TextDescription
-                      style={{
-                        textAlign: "center",
-                        color: "var(--accent-text)",
-                      }}
-                    >
-                      {feedback}
-                    </s.TextDescription>
-                    <s.SpacerMedium />
-                    <s.Container ai={"center"} jc={"center"} fd={"row"}>
-                      <StyledRoundButton
-                        style={{ lineHeight: 0.4 }}
-                        disabled={claimingNft ? 1 : 0}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          decrementMintAmount();
-                        }}
-                      >
-                        -
-                      </StyledRoundButton>
-                      <s.SpacerMedium />
-                      <s.TextDescription
-                        style={{
-                          textAlign: "center",
-                          color: "var(--accent-text)",
-                        }}
-                      >
-                        {mintAmount}
-                      </s.TextDescription>
-                      <s.SpacerMedium />
-                      <StyledRoundButton
-                        disabled={claimingNft ? 1 : 0}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          incrementMintAmount();
-                        }}
-                      >
-                        +
-                      </StyledRoundButton>
-                    </s.Container>
-                    <s.SpacerSmall />
-                    <s.Container ai={"center"} jc={"center"} fd={"row"}>
-                      <StyledButton
-                        disabled={claimingNft ? 1 : 0}
-                        onClick={(e) => {
-                          e.preventDefault();;
-                          claimNFTs();
-                          getData();
-                        }}
-                      >
-                        {claimingNft ? "CONNECTING..." : "CLAIM"}
-                      </StyledButton>
-                    </s.Container>
+                    {karmeleonInfo.totalCount != 0 ? (
+                        <s.TextTitle
+                            style={{ textAlign: "center", color: "#f1f1f1", fontFamily: "PxGrotesk Bold", textTransform: "uppercase",
+                              borderRadius: "100px", backgroundColor: "#999", fontSize: "18px",
+                              paddingTop: "5px",
+                              paddingBottom: "3px",
+                              paddingLeft: "16px",
+                              paddingRight: "16px"
+                            }}
+                        > {karmeleonInfo.viewing ? null : viewKarmeleonInfo()}
+                          {karmeleonInfo.eligibleCount}/{karmeleonInfo.totalCount} Of your Karmeleons are still eligible for a free mint
+                        </s.TextTitle>
+                    ):(
+                        <s.TextTitle
+                            style={{ textAlign: "center", color: "#f1f1f1", fontFamily: "PxGrotesk Bold", textTransform: "uppercase",
+                              borderRadius: "100px", backgroundColor: "#999", fontSize: "18px",
+                              paddingTop: "5px",
+                              paddingBottom: "3px",
+                              paddingLeft: "16px",
+                              paddingRight: "16px"
+                            }}
+                        > {karmeleonInfo.viewing ? null : viewKarmeleonInfo()}
+                          You have 0 Karmeleons
+                        </s.TextTitle>
+                    )}
+                    {karmeleonInfo.totalCount == 0 ? (null):(
+                        <div>
+                          <s.SpacerMedium />
+                          <s.TextDescription
+                              style={{
+                                textAlign: "center",
+                                color: "var(--accent-text)",
+                              }}
+                          >
+                            {feedback}
+                          </s.TextDescription>
+                          <s.SpacerMedium />
+                          <s.Container ai={"center"} jc={"center"} fd={"row"}>
+                            <StyledRoundButton
+                                style={{ lineHeight: 0.4 }}
+                                disabled={claimingNft ? 1 : 0}
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  decrementMintAmount();
+                                }}
+                            >
+                              -
+                            </StyledRoundButton>
+                            <s.SpacerMedium />
+                            <s.TextDescription
+                                style={{
+                                  textAlign: "center",
+                                  color: "var(--accent-text)",
+                                }}
+                            >
+                              {mintAmount}
+                            </s.TextDescription>
+                            <s.SpacerMedium />
+                            <StyledRoundButton
+                                disabled={claimingNft ? 1 : 0}
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  incrementMintAmount();
+                                }}
+                            >
+                              +
+                            </StyledRoundButton>
+                          </s.Container>
+                          <s.SpacerSmall />
+                          <s.Container ai={"center"} jc={"center"} fd={"row"}>
+                            <StyledButton
+                                disabled={claimingNft ? 1 : 0}
+                                onClick={(e) => {
+                                  e.preventDefault();;
+                                  claimNFTs();
+                                  getData();
+                                }}
+                            >
+                              {claimingNft ? "CONNECTING..." : "CLAIM"}
+                            </StyledButton>
+                          </s.Container>
+                        </div>
+                    )}
                   </>
                 )}
               </>
