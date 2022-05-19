@@ -116,6 +116,8 @@ function App() {
   const [claimingNft, setClaimingNft] = useState(false);
   const [feedback, setFeedback] = useState(`Click CLAIM to claim your free NFT(s)`);
   const [mintAmount, setMintAmount] = useState(0);
+  const [karmID, setKarmID] = useState(0);
+  const [karmCheckFeedback, setKarmCheckFeedback] = useState("");
   const [karmeleonInfo, setKarmeleonInfo] = useState({
     viewing: false,
     totalCount: 0,
@@ -153,6 +155,25 @@ function App() {
     console.log(karmeleonInfo.viewing);
     console.log(karmeleonInfo.totalCount);
     console.log(karmeleonInfo.eligibleCount);
+  }
+
+  const handleKarmIDChange = (e) => {
+    setKarmID(e.target.value);
+  }
+
+  const checkKarmeleonClaim = () => {
+    console.log("Checking.." + karmID.toString())
+    setKarmCheckFeedback("Karmeleon #" + karmID + " can still claim a free Karmz!")
+    // blockchain.smartContract.methods.CLAIMED(karmID).call({from: blockchain.account}).then(function (res) {
+    //   if(res){
+    //     setKarmCheckFeedback("Sorry, this Karmeleon was already used to claim a Karmz.")
+    //   } else{
+    //     setKarmCheckFeedback("This Karmeleon can still claim a free Karmz!")
+    //   }
+    //
+    // }).catch(function (err) {
+    //   console.log(err);
+    // });
   }
 
   const claimNFTs = () => {
@@ -384,17 +405,28 @@ function App() {
                           {karmeleonInfo.eligibleCount}/{karmeleonInfo.totalCount} Of your Karmeleons are still eligible for a free mint
                         </s.TextTitle>
                     ):(
-                        <s.TextTitle
-                            style={{ textAlign: "center", color: "#f1f1f1", fontFamily: "PxGrotesk Bold", textTransform: "uppercase",
-                              borderRadius: "100px", backgroundColor: "#999", fontSize: "18px",
-                              paddingTop: "5px",
-                              paddingBottom: "3px",
-                              paddingLeft: "16px",
-                              paddingRight: "16px"
-                            }}
-                        > {karmeleonInfo.viewing ? null : viewKarmeleonInfo()}
-                          You have 0 Karmeleons
-                        </s.TextTitle>
+                        <div>
+                          <s.TextTitle
+                              style={{ textAlign: "center", color: "#f1f1f1", fontFamily: "PxGrotesk Bold", textTransform: "uppercase",
+                                borderRadius: "100px", backgroundColor: "#999", fontSize: "18px",
+                                paddingTop: "5px",
+                                paddingBottom: "3px",
+                                paddingLeft: "16px",
+                                paddingRight: "16px"
+                              }}
+                          > {karmeleonInfo.viewing ? null : viewKarmeleonInfo()}
+                            You have 0 Karmeleons in your wallet
+                          </s.TextTitle>
+                          <s.SpacerSmall />
+                        <s.TextDescription
+                        style={{
+                        textAlign: "center",
+                        color: "var(--accent-text)",
+                      }}
+                        >
+                        Mint a Karmeleon at <a href="https://mint.karmeleonsnft.com">https://mint.karmeleonsnft.com</a>
+                        </s.TextDescription>
+                      </div>
                     )}
                     {karmeleonInfo.totalCount == 0 ? (null):(
                         <div>
@@ -510,10 +542,40 @@ function App() {
             <p>Enter the Karmeleon Token ID to see if it is eligible for a one-time Karmz claim.</p>
                 <div className="flex items-center">#&nbsp;
                   <input type="number"
-                         className=""
-                         max={CONFIG.MAX_SUPPLY} />
-                  <button className="btn btn-small ">Check</button>
+                         id="karmID"
+                         name="karmID"
+                         onChange={handleKarmIDChange}
+                         value={karmID}
+                         max={3333}
+                         min={0}
+                  />
+                  <StyledButton
+                      style={{
+                        paddingTop: 2,
+                        paddingBottom: 2,
+                        paddingLeft: 2,
+                        paddingRight: 2,
+                        fontSize: 16,
+                        color: "black",
+                      }
+                      }
+                      disabled={claimingNft ? 1 : 0}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        checkKarmeleonClaim();
+                      }}
+                  >
+                    Check
+                  </StyledButton>
                 </div>
+            <s.TextDescription
+                style={{
+                  textAlign: "center",
+                  color: "yellow",
+                }}
+            >
+              {karmCheckFeedback}
+            </s.TextDescription>
 
           </s.TextDescription>
           <s.SpacerMedium />
