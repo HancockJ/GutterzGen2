@@ -288,7 +288,7 @@ function App() {
                 <s.TextTitle
               style={{
                 textAlign: "center",
-                fontSize: 26,
+                fontSize: 34,
                 marginBottom: 8,
                 lineHeight: 1.2,
                 fontFamily: "PxGrotesk Bold",
@@ -340,7 +340,7 @@ function App() {
                 <s.TextTitle
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
                 >
-                  Karmeleons have sold out.
+                  All Karmz have been claimed.
                 </s.TextTitle>
                 <s.TextDescription
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
@@ -362,6 +362,7 @@ function App() {
                       style={{
                         textAlign: "center",
                         color: "var(--accent-text)",
+                        fontSize: 20
                       }}
                     >
                       Connect to the {CONFIG.NETWORK.NAME} network to view your NFT eligibility & mint.
@@ -507,7 +508,7 @@ function App() {
 {/*=======================================================================================================================================*/}
 {/*=====================================================CLAIM WINDOW======================================================================*/}
 {/*=======================================================================================================================================*/}
-        <s.Container className="mint-window"
+        <s.Container className="claim-window"
                      flex={2}
                      jc={"center"}
                      ai={"center"}
@@ -540,10 +541,11 @@ function App() {
               }}
           >
             <p>Enter the Karmeleon Token ID to see if it is eligible for a one-time Karmz claim.</p>
-                <div className="flex items-center">#&nbsp;
-                  <input type="number"
+                <div className="flex-container claim-check-wrapper">#&nbsp;
+                  <input type="text"
                          id="karmID"
-                         name="karmID"
+                         name="karmID" 
+                         className="claim-input" 
                          onChange={handleKarmIDChange}
                          value={karmID}
                          max={3333}
@@ -551,11 +553,13 @@ function App() {
                   />
                   <StyledButton
                       style={{
-                        paddingTop: 2,
-                        paddingBottom: 2,
-                        paddingLeft: 2,
-                        paddingRight: 2,
-                        fontSize: 16,
+                        paddingTop: 16,
+                        paddingBottom: 16,
+                        paddingLeft: 20,
+                        paddingRight: 20,
+                        fontSize: 24,
+                        textTransform: "uppercase",
+                        marginLeft: 6,
                         color: "black",
                       }
                       }
@@ -592,8 +596,8 @@ function App() {
             }}
           >
             Please make sure you are connected to the right network (
-            {CONFIG.NETWORK.NAME} Mainnet) and the correct address. Please note:
-            Once you make the purchase, you cannot undo this action.
+            {CONFIG.NETWORK.NAME} Mainnet) and you're connecting with a wallet that holds Karmeleons NFTs. Please note:
+            Once you claim your free NFTs, you cannot undo this action.
           </s.TextDescription>
           <s.SpacerSmall />
           <s.TextDescription
