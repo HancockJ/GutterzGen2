@@ -241,7 +241,7 @@ function App() {
         <s.SpacerSmall />
         <ResponsiveWrapper flex={1} style={{ padding: 0 }} test>
           <s.Container flex={1} jc={"center"} ai={"center"}>
-            <StyledImg alt={"example"} src={"/setup/images/karmeleon-left.png"} />
+            <StyledImg alt={"example"} src={"/setup/images/karmz-left.png"} />
           </s.Container>
           <s.SpacerLarge />
           <s.Container className="mint-window"
@@ -274,7 +274,7 @@ function App() {
                 color: "var(--accent-text)",
               }}
               >
-                Connect for mint status
+                Connect for eligibility
               </s.TextTitle>
               ) : ( 
                 <s.TextTitle
@@ -299,7 +299,7 @@ function App() {
                     marginBottom: "10px"
                   }}
                   >
-                  <p>&hellip;have been minted</p>
+                  <p>&hellip;total Karmz have been claimed</p>
                   </s.TextDescription>
               )}
 
@@ -446,7 +446,7 @@ function App() {
           <s.Container flex={1} jc={"center"} ai={"center"}>
             <StyledImg
               alt={"example"}
-              src={"/setup/images/karmeleon-right.png"}
+              src={"/setup/images/karmz-right.png"}
               // style={{ transform: "scaleX(-1)" }}
             />
           </s.Container>
