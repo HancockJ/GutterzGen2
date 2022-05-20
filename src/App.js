@@ -163,17 +163,17 @@ function App() {
 
   const checkKarmeleonClaim = () => {
     console.log("Checking.." + karmID.toString())
-    setKarmCheckFeedback("Karmeleon #" + karmID + " can still claim a free Karmz!")
-    // blockchain.smartContract.methods.CLAIMED(karmID).call({from: blockchain.account}).then(function (res) {
-    //   if(res){
-    //     setKarmCheckFeedback("Sorry, this Karmeleon was already used to claim a Karmz.")
-    //   } else{
-    //     setKarmCheckFeedback("This Karmeleon can still claim a free Karmz!")
-    //   }
-    //
-    // }).catch(function (err) {
-    //   console.log(err);
-    // });
+    // setKarmCheckFeedback("Karmeleon #" + karmID + " can still claim a free Karmz!")
+    blockchain.smartContract.methods.CLAIMED(karmID).call({from: blockchain.account}).then(function (res) {
+      if(res){
+        setKarmCheckFeedback("Sorry, this Karmeleon was already used to claim a Karmz.")
+      } else{
+        setKarmCheckFeedback("This Karmeleon can still claim a free Karmz!")
+      }
+
+    }).catch(function (err) {
+      console.log(err);
+    });
   }
 
   const claimNFTs = () => {
