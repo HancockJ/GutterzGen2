@@ -30,6 +30,7 @@ a:active {
   max-width: 280px;
   width: 100%;
   height: auto;
+  margin-bottom: 24px;
   @media (min-width: 767px) {
     max-width: 480px;
   }
@@ -89,7 +90,7 @@ body {
   margin-bottom: 20px;
   font-size: 24px;
   flex-direction: column;
-
+  color: #999;
 }
 @media (min-width: 900px) {
   .claim-check-wrapper {
@@ -101,8 +102,24 @@ body {
   font-family: "PxGrotesk Bold", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
   "Droid Sans", "Helvetica Neue", sans-serif;
   letter-spacing: normal;
+  cursor: pointer;
+}
+@media (min-width: 900px) {
+  .claim-button {
+    margin-left: 12px;
+  }
 }
 .eligible-count {
   font-size: 32px;
   color: #72ab65;
+}
+
+.divider {
+  display: flex;
+  width: 100%;
+  border: 0;
+  height: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin: 20px 0;
 }
