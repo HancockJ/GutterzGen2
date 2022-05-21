@@ -1,7 +1,7 @@
 :root {
   --primary: #000;
   --primary-text: #f5f5f5;
-  --secondary: #72ab65;
+  --secondary: #5ADBFF;
   --secondary-text: #f5f5f5;
   --accent: #212121;
   --accent-text: #f5f5f5;
@@ -99,10 +99,10 @@ body {
   }
 }
 .claim-button {
-  font-family: "PxGrotesk Bold", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
-  "Droid Sans", "Helvetica Neue", sans-serif;
+ 
   letter-spacing: normal;
   cursor: pointer;
+
 }
 @media (min-width: 900px) {
   .claim-button {

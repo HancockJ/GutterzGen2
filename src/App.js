@@ -27,7 +27,7 @@ export const StyledButton = styled.button`
   font-size: 32px;
   background-color: var(--secondary);
   /*font-weight: bold;*/
-  color: var(--secondary-text);
+  color: #094074;
   /*width: 100px;*/
   cursor: pointer;
   /*box-shadow: 0px 6px 0px -2px rgba(250, 250, 250, 0.3);
@@ -571,8 +571,8 @@ function App() {
                         fontSize: 23,
                         lineHeight: 1,
                         textTransform: "uppercase",
-                        color: "#666",
-                        backgroundColor: "lightgray"
+                        backgroundColor: "#72ab65",
+                        color: "#243b1f"
                       }
                       }
                       disabled={claimingNft ? 1 : 0}
