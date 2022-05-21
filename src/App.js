@@ -18,7 +18,7 @@ const truncate = (input, len) =>
   input.length > len ? `${input.substring(0, len)}...` : input;
 
 export const StyledButton = styled.button`
-  padding-top: 24px;
+  padding-top: 22px;
   padding-bottom: 16px;
   padding-right: 30px;
   padding-left: 30px;
@@ -564,8 +564,8 @@ function App() {
                   <StyledButton 
                       className="claim-button" 
                       style={{
-                        paddingTop: 19,
-                        paddingBottom: 19,
+                        paddingTop: 21,
+                        paddingBottom: 18,
                         paddingLeft: 20,
                         paddingRight: 20,
                         fontSize: 23,
