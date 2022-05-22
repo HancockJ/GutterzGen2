@@ -2,21 +2,57 @@
   --primary: #000;
   --primary-text: #f5f5f5;
   --secondary: #5ADBFF;
-  --secondary-text: #094074;
+  --secondary-text: #f5f5f5;
   --accent: #212121;
   --accent-text: #f5f5f5;
-  --button-text: #094074;
+  --button-text: #f5f5f5;
+}
+ /* unvisited link */
+ a:link {
+  color: #5ADBFF;
 }
 
+/* visited link */
+a:visited {
+  color: #5ADBFF
+}
+
+/* mouse over link */
+a:hover {
+  color: white;
+}
+
+/* selected link */
+a:active {
+  color: #5ADBFF
+} 
 .logo {
   max-width: 280px;
   width: 100%;
   height: auto;
+  margin-bottom: 24px;
   @media (min-width: 767px) {
     max-width: 480px;
   }
 }
+body {
+  font-size: 24px;
+}
+.flex-container {
+  /* We first create a flex layout context */
+  display: flex;
 
+  /* Then we define the flow direction 
+     and if we allow the items to wrap 
+   * Remember this is the same as:
+   * flex-direction: row;
+   * flex-wrap: wrap;
+   */
+  flex-flow: row wrap;
+
+  /* Then we define how is distributed the remaining space */
+  justify-content: space-around;
+}
 
 .mint-window,
 .mint-window::before,
@@ -25,4 +61,65 @@
   background-color: rgba(255, 255, 255, .2);
   backdrop-filter: blur(5px);
   box-shadow: 0px 0px 22px rgba(0, 0, 0, 0.08);
+}
+
+.claim-window {
+  max-height: 300px;
+}
+
+.claim-input {
+  padding: 16px 10px;
+  font-size: 24px;
+  width: 100px;
+  border: none;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  text-align: center;
+}
+@media (min-width: 900px) {
+  .claim-input {
+    margin-bottom: 0;
+  }
+}
+
+.claim-check-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 24px;
+  flex-direction: column;
+  color: #999;
+}
+@media (min-width: 900px) {
+  .claim-check-wrapper {
+    flex-direction: row;
+    color: #999;
+  }
+}
+.claim-button {
+ 
+  letter-spacing: normal;
+  cursor: pointer;
+
+}
+@media (min-width: 900px) {
+  .claim-button {
+    margin-left: 12px;
+  }
+}
+.eligible-count {
+  font-size: 32px;
+  color: #72ab65;
+}
+
+.divider {
+  display: flex;
+  width: 100%;
+  border: 0;
+  height: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin: 20px 0;
 }

@@ -547,7 +547,6 @@ function App() {
                 <div className="flex-container claim-check-wrapper">Karmeleon #&nbsp;
                   <input 
                   type="text" 
-                  placeholder="Karmeleon ID#" 
                   maxLength={4} 
                   pattern="[0-9]*" 
                          id="karmID"

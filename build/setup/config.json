@@ -1,6 +1,6 @@
 {
-  "CONTRACT_ADDRESS": "0x0xC439B208d3777F647910B0085A650feA340c839D",
-  "SCAN_LINK": "https://etherscan.io/address/0xC439B208d3777F647910B0085A650feA340c839D",
+  "CONTRACT_ADDRESS": "0xC439B208d3777F647910B0085A650feA340c839D",
+  "SCAN_LINK": "https://rinkeby.etherscan.io/address/0xC439B208d3777F647910B0085A650feA340c839D",
   "NETWORK": {
     "NAME": "Ethereum",
     "SYMBOL": "ETH",
@@ -9,10 +9,10 @@
   "NFT_NAME": "Karmz",
   "SYMBOL": "KRMZ",
   "MAX_SUPPLY": 3333,
-  "WEI_COST": 35000000000000000,
-  "DISPLAY_COST": 0.035,
+  "WEI_COST": 0,
+  "DISPLAY_COST": 0.0,
   "GAS_LIMIT": 285000,
   "MARKETPLACE": "OpenSea",
-  "MARKETPLACE_LINK": "https://opensea.io/collection/karmeleons",
+  "MARKETPLACE_LINK": "https://opensea.io/collection/karmz",
   "SHOW_BACKGROUND": true
 }
