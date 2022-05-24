@@ -464,21 +464,21 @@ function App() {
                                         color: "var(--accent-text)",
                                     }}
                                 >
-                                    Mint a Karmeleon at <a href="https://mint.karmeleonsnft.com">https://mint.karmeleonsnft.com</a>
+                                    Mint a Karmeleon at <a href="https://mint.karmeleonsnft.com">https://mint.karmeleonsnft.com</a>, then come back here to claim your free Karmz
                                 </s.TextDescription>
                             </div>
                         ):(
                             <div>
                                 <s.TextTitle
                                     style={{ textAlign: "center", color: "#f1f1f1", fontFamily: "PxGrotesk Bold", textTransform: "uppercase",
-                                        borderRadius: "100px", backgroundColor: "#222", fontSize: "18px", color: "#888",
+                                        borderRadius: "0", backgroundColor: "#222", fontSize: "18px", color: "#888",
                                         paddingTop: "16px",
                                         paddingBottom: "16px",
                                         paddingLeft: "16px",
                                         paddingRight: "16px"
                                     }}
                                 > {karmeleonInfo.viewing ? null : viewKarmeleonInfo()}
-                                    You don't have any eligible Karmeleons in your wallet
+                                    😫 You don't have any eligible Karmeleons in your wallet
                                 </s.TextTitle>
                                 <s.SpacerSmall />
                                 <s.TextDescription
@@ -487,7 +487,7 @@ function App() {
                                         color: "var(--accent-text)",
                                     }}
                                 >
-                                    Mint a Karmeleon at <a href="https://mint.karmeleonsnft.com">https://mint.karmeleonsnft.com</a>
+                                    Mint a Karmeleon at <a href="https://mint.karmeleonsnft.com">https://mint.karmeleonsnft.com</a>, then come back here to claim your free Karmz
                                 </s.TextDescription>
                             </div>
                             )
