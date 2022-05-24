@@ -118,6 +118,7 @@ function App() {
   const [mintAmount, setMintAmount] = useState(0);
   const [karmID, setKarmID] = useState(0);
   const [karmCheckFeedback, setKarmCheckFeedback] = useState("");
+  const [contractPaused, setContractPaused] = useState(true);
   const [karmeleonInfo, setKarmeleonInfo] = useState({
     viewing: false,
     totalCount: 0,
@@ -228,6 +229,12 @@ function App() {
     if (blockchain.account !== "" && blockchain.smartContract !== null) {
       dispatch(fetchData(blockchain.account));
     }
+  };
+
+  const getPaused = () => {
+      blockchain.smartContract.methods.paused().call().then(function (res) {
+          setContractPaused(res);
+      });
   };
 
 
@@ -397,7 +404,33 @@ function App() {
                   </s.Container>
                 ) : (
                   <>
+                      {getPaused()}
+                      {console.log(contractPaused)}
                     {karmeleonInfo.eligibleCount != 0 ? (
+                        contractPaused ? (
+                            <div>
+                                <s.TextTitle
+                                    style={{ textAlign: "center", color: "#f1f1f1", fontFamily: "PxGrotesk Bold", textTransform: "uppercase",
+                                        borderRadius: "100px", backgroundColor: "#222", fontSize: "18px", color: "#888",
+                                        paddingTop: "16px",
+                                        paddingBottom: "16px",
+                                        paddingLeft: "16px",
+                                        paddingRight: "16px"
+                                    }}
+                                > {karmeleonInfo.viewing ? null : viewKarmeleonInfo()}
+                                    The contract is currently paused
+                                </s.TextTitle>
+                                <s.SpacerSmall />
+                                <s.TextDescription
+                                    style={{
+                                        textAlign: "center",
+                                        color: "var(--accent-text)",
+                                    }}
+                                >
+                                    Mint a Karmeleon at <a href="https://mint.karmeleonsnft.com">https://mint.karmeleonsnft.com</a>
+                                </s.TextDescription>
+                            </div>
+                        ):(
                         <s.TextTitle
                             style={{ textAlign: "center", color: "#f1f1f1", fontFamily: "PxGrotesk Bold", textTransform: "uppercase",
                               borderRadius: "0", backgroundColor: "#222", fontSize: "18px", color: "#888", 
@@ -409,29 +442,56 @@ function App() {
                         > {karmeleonInfo.viewing ? null : viewKarmeleonInfo()}
                           <span class="eligible-count">{karmeleonInfo.eligibleCount}/{karmeleonInfo.totalCount}</span><br/>of your Karmeleons are eligible to claim free Karmz
                         </s.TextTitle>
+                        )
                     ):(
-                        <div>
-                          <s.TextTitle
-                              style={{ textAlign: "center", color: "#f1f1f1", fontFamily: "PxGrotesk Bold", textTransform: "uppercase",
-                                borderRadius: "100px", backgroundColor: "#222", fontSize: "18px", color: "#888", 
-                                paddingTop: "16px",
-                                paddingBottom: "16px",
-                                paddingLeft: "16px",
-                                paddingRight: "16px"
-                              }}
-                          > {karmeleonInfo.viewing ? null : viewKarmeleonInfo()}
-                            You don't have any eligible Karmeleons in your wallet
-                          </s.TextTitle>
-                          <s.SpacerSmall />
-                        <s.TextDescription
-                        style={{
-                        textAlign: "center",
-                        color: "var(--accent-text)",
-                      }}
-                        >
-                        Mint a Karmeleon at <a href="https://mint.karmeleonsnft.com">https://mint.karmeleonsnft.com</a>
-                        </s.TextDescription>
-                      </div>
+                        contractPaused ? (
+                            <div>
+                                <s.TextTitle
+                                    style={{ textAlign: "center", color: "#f1f1f1", fontFamily: "PxGrotesk Bold", textTransform: "uppercase",
+                                        borderRadius: "100px", backgroundColor: "#222", fontSize: "18px", color: "#888",
+                                        paddingTop: "16px",
+                                        paddingBottom: "16px",
+                                        paddingLeft: "16px",
+                                        paddingRight: "16px"
+                                    }}
+                                > {karmeleonInfo.viewing ? null : viewKarmeleonInfo()}
+                                    The contract is currently paused
+                                </s.TextTitle>
+                                <s.SpacerSmall />
+                                <s.TextDescription
+                                    style={{
+                                        textAlign: "center",
+                                        color: "var(--accent-text)",
+                                    }}
+                                >
+                                    Mint a Karmeleon at <a href="https://mint.karmeleonsnft.com">https://mint.karmeleonsnft.com</a>
+                                </s.TextDescription>
+                            </div>
+                        ):(
+                            <div>
+                                <s.TextTitle
+                                    style={{ textAlign: "center", color: "#f1f1f1", fontFamily: "PxGrotesk Bold", textTransform: "uppercase",
+                                        borderRadius: "100px", backgroundColor: "#222", fontSize: "18px", color: "#888",
+                                        paddingTop: "16px",
+                                        paddingBottom: "16px",
+                                        paddingLeft: "16px",
+                                        paddingRight: "16px"
+                                    }}
+                                > {karmeleonInfo.viewing ? null : viewKarmeleonInfo()}
+                                    You don't have any eligible Karmeleons in your wallet
+                                </s.TextTitle>
+                                <s.SpacerSmall />
+                                <s.TextDescription
+                                    style={{
+                                        textAlign: "center",
+                                        color: "var(--accent-text)",
+                                    }}
+                                >
+                                    Mint a Karmeleon at <a href="https://mint.karmeleonsnft.com">https://mint.karmeleonsnft.com</a>
+                                </s.TextDescription>
+                            </div>
+                            )
+
                     )}
                     {karmeleonInfo.eligibleCount == 0 ? (null):(
                         <div>
@@ -509,99 +569,105 @@ function App() {
 
 
         <s.SpacerMedium />
-{/*=======================================================================================================================================*/}
-{/*=====================================================CLAIM WINDOW======================================================================*/}
-{/*=======================================================================================================================================*/}
+
 <hr class="divider" />
-        <s.Container className="claim-window"
-                     flex={2}
-                     jc={"center"}
-                     ai={"center"}
-                     style={{
-                       // backgroundColor: "var(--accent)",
-                       paddingRight: 20,
-                       paddingLeft: 20,
-                       borderRadius: 0,
-                       //border: "4px dashed var(--secondary)",
-                       //boxShadow: "0px 5px 11px 2px rgba(0,0,0,0.7)",
-                     }}
-        >
-          <s.SpacerSmall />
-          <s.TextTitle
-              style={{
+    <s.Container className="claim-window"
+                 flex={2}
+                 jc={"center"}
+                 ai={"center"}
+                 style={{
+                     // backgroundColor: "var(--accent)",
+                     paddingRight: 20,
+                     paddingLeft: 20,
+                     borderRadius: 0,
+                     //border: "4px dashed var(--secondary)",
+                     //boxShadow: "0px 5px 11px 2px rgba(0,0,0,0.7)",
+                 }}
+    >
+        <s.SpacerSmall />
+        <s.TextTitle
+            style={{
                 textAlign: "center",
                 fontSize: 28,
                 marginBottom: 8,
                 lineHeight: 1.2,
                 fontFamily: "PxGrotesk Bold",
                 color: "var(--accent-text)",
-              }}
-          >
-            
+            }}
+        >
+
             KARMZ CLAIM CHECK
-          </s.TextTitle>
-          <s.TextDescription
-              style={{
+        </s.TextTitle>
+        <s.TextDescription
+            style={{
                 textAlign: "center",
                 color: "var(--primary-text)",
                 marginBottom: "10px"
-              }}
-          >
-            <p>Enter the ID of any Karmeleon to see if it's been used to claim a Karmz.</p>
-                <div className="flex-container claim-check-wrapper">Karmeleon #&nbsp;
-                  <input 
-                  type="text" 
-                  maxLength={4} 
-                  pattern="[0-9]*" 
-                         id="karmID"
-                         name="karmID" 
-                         className="claim-input" 
-                         onChange={handleKarmIDChange}
-                         value={karmID} 
-                         onKeyPress={(event) => {
-                          if (!/[0-9]/.test(event.key)) {
-                            event.preventDefault();
-                          }
-                        }}
-                  />
-                  <StyledButton 
-                      className="claim-button" 
-                      style={{
-                        paddingTop: 21,
-                        paddingBottom: 18,
-                        paddingLeft: 20,
-                        paddingRight: 20,
-                        fontSize: 23,
-                        lineHeight: 1,
-                        textTransform: "uppercase",
-                        backgroundColor: "#72ab65",
-                        color: "#243b1f"
-                      }
-                      }
-                      disabled={claimingNft ? 1 : 0}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        checkKarmeleonClaim();
-                      }}
-                  >
-                    Check Status
-                  </StyledButton>
+            }}
+        >
+            {blockchain.account === "" ||
+            blockchain.smartContract === null ? (
+                    <p>You must be connected to the network to use this feature.</p>
+                )
+                :
+                (
+                    <div>
+                    <p>Enter the ID of any Karmeleon to see if it's been used to claim a Karmz.</p>
+                    <div className="flex-container claim-check-wrapper">Karmeleon #&nbsp;
+                        <input
+                            type="text"
+                            maxLength={4}
+                            pattern="[0-9]*"
+                            id="karmID"
+                            name="karmID"
+                            className="claim-input"
+                            onChange={handleKarmIDChange}
+                            value={karmID}
+                            onKeyPress={(event) => {
+                                if (!/[0-9]/.test(event.key)) {
+                                    event.preventDefault();
+                                }
+                            }}
+                        />
+                        <StyledButton
+                            className="claim-button"
+                            style={{
+                                paddingTop: 21,
+                                paddingBottom: 18,
+                                paddingLeft: 20,
+                                paddingRight: 20,
+                                fontSize: 23,
+                                lineHeight: 1,
+                                textTransform: "uppercase",
+                                backgroundColor: "#72ab65",
+                                color: "#243b1f"
+                            }
+                            }
+                            disabled={claimingNft ? 1 : 0}
+                            onClick={(e) => {
+                                e.preventDefault();
+                                checkKarmeleonClaim();
+                            }}
+                        >
+                            Check Status
+                        </StyledButton>
+                    </div>
                 </div>
+                )
+            }
             <s.TextDescription
                 style={{
-                  textAlign: "center",
-                  color: "#cbdb70",
+                    textAlign: "center",
+                    color: "#cbdb70",
                 }}
             >
-              {karmCheckFeedback}
+                {karmCheckFeedback}
             </s.TextDescription>
 
-          </s.TextDescription>
-          <s.SpacerMedium />
-        </s.Container>
-{/*=======================================================================================================================================*/}
-{/*=====================================================CLAIM WINDOW======================================================================*/}
-{/*=======================================================================================================================================*/}
+        </s.TextDescription>
+        <s.SpacerMedium />
+    </s.Container>
+
         <s.SpacerLarge />
         <s.Container jc={"center"} ai={"center"} style={{ width: "90%" }}>
           <s.TextDescription
