@@ -1,7 +1,7 @@
 {
-  "name": "hashlips_nft_minting_dapp",
+  "name": "Karmz minting dapp",
   "version": "1.0.0",
-  "description": "HashLips minting dapp is a quick and easy way to connect your smart contract and start minting NFTs.",
+  "description": "Karmz minting dapp is a quick and easy way to connect your smart contract and start minting NFTs.",
   "private": true,
   "dependencies": {
     "@walletconnect/web3-provider": "^1.7.4",
@@ -23,7 +23,7 @@
     "web3-provider": "^1.0.0",
     "web3modal": "^1.9.5"
   },
-  "author": "Daniel Eugene Botha (HashLips)",
+  "author": "Karmeleonz",
   "license": "MIT",
   "scripts": {
     "start": "react-scripts start",

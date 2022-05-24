@@ -142,6 +142,7 @@ function App() {
     SHOW_BACKGROUND: false,
   });
 
+
   const viewKarmeleonInfo = () => {
     blockchain.smartContract.methods.karmeleonCount(blockchain.account).call({from: blockchain.account}).then(function (res) {
       setKarmeleonInfo({
@@ -156,6 +157,7 @@ function App() {
     console.log(karmeleonInfo.totalCount);
     console.log(karmeleonInfo.eligibleCount);
   }
+  
 
   const handleKarmIDChange = (e) => {
     setKarmID(e.target.value);
@@ -164,17 +166,22 @@ function App() {
   const checkKarmeleonClaim = () => {
     console.log("Checking.." + karmID.toString())
     // setKarmCheckFeedback("Karmeleon #" + karmID + " can still claim a free Karmz!")
-    blockchain.smartContract.methods.CLAIMED(karmID).call({from: blockchain.account}).then(function (res) {
-      if(res){
-        setKarmCheckFeedback("Sorry, this Karmeleon was already used to claim a Karmz.")
-      } else{
-        setKarmCheckFeedback("This Karmeleon can still claim a free Karmz!")
-      }
+      if(karmID < 1 || karmID > 3333){
+          setKarmCheckFeedback("You must enter a valid token ID.")
+      }else{
+          blockchain.smartContract.methods.CLAIMED(karmID).call().then(function (res) {
+              if(res){
+                  setKarmCheckFeedback("Sorry, Karmeleon #" + karmID + " was already used to claim a Karmz.")
+              } else{
+                  setKarmCheckFeedback("Karmeleon #" + karmID + " can still claim a free Karmz!")
+              }
 
-    }).catch(function (err) {
-      console.log(err);
-    });
+          }).catch(function (err) {
+              console.log(err);
+          });
+      }
   }
+
 
   const claimNFTs = () => {
     let cost = CONFIG.WEI_COST;
@@ -227,6 +234,8 @@ function App() {
       dispatch(fetchData(blockchain.account));
     }
   };
+
+
 
   const getConfig = async () => {
     const configResponse = await fetch("/setup/config.json", {
@@ -393,7 +402,7 @@ function App() {
                   </s.Container>
                 ) : (
                   <>
-                    {karmeleonInfo.totalCount != 0 ? (
+                    {karmeleonInfo.eligibleCount != 0 ? (
                         <s.TextTitle
                             style={{ textAlign: "center", color: "#f1f1f1", fontFamily: "PxGrotesk Bold", textTransform: "uppercase",
                               borderRadius: "0", backgroundColor: "#222", fontSize: "18px", color: "#888", 
@@ -416,7 +425,7 @@ function App() {
                                 paddingRight: "16px"
                               }}
                           > {karmeleonInfo.viewing ? null : viewKarmeleonInfo()}
-                            You have 0 Karmeleons in your wallet
+                            You don't have any eligible Karmeleons in your wallet
                           </s.TextTitle>
                           <s.SpacerSmall />
                         <s.TextDescription
@@ -429,7 +438,7 @@ function App() {
                         </s.TextDescription>
                       </div>
                     )}
-                    {karmeleonInfo.totalCount == 0 ? (null):(
+                    {karmeleonInfo.eligibleCount == 0 ? (null):(
                         <div>
                           <s.SpacerMedium />
                           <s.TextDescription
