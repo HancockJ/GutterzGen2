@@ -153,9 +153,6 @@ function App() {
     }).catch(function (err) {
       console.log(err);
     });
-    console.log(karmeleonInfo.viewing);
-    console.log(karmeleonInfo.totalCount);
-    console.log(karmeleonInfo.eligibleCount);
   }
   
 
@@ -164,8 +161,6 @@ function App() {
   }
 
   const checkKarmeleonClaim = () => {
-    console.log("Checking.." + karmID.toString())
-    // setKarmCheckFeedback("Karmeleon #" + karmID + " can still claim a free Karmz!")
       if(karmID < 1 || karmID > 3333){
           setKarmCheckFeedback("You must enter a valid token ID.")
       }else{
