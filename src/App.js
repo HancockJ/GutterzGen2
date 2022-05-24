@@ -411,7 +411,7 @@ function App() {
                             <div>
                                 <s.TextTitle
                                     style={{ textAlign: "center", color: "#f1f1f1", fontFamily: "PxGrotesk Bold", textTransform: "uppercase",
-                                        borderRadius: "100px", backgroundColor: "#222", fontSize: "18px", color: "#888",
+                                        borderRadius: "0", backgroundColor: "#222", fontSize: "18px", color: "#888",
                                         paddingTop: "16px",
                                         paddingBottom: "16px",
                                         paddingLeft: "16px",
