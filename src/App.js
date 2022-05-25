@@ -115,7 +115,7 @@ function App() {
   const data = useSelector((state) => state.data);
   const [claimingNft, setClaimingNft] = useState(false);
   const [feedback, setFeedback] = useState(`Claim your free (+ gas) Karmz`);
-  const [mintAmount, setMintAmount] = useState(0);
+  const [mintAmount, setMintAmount] = useState(1);
   const [karmID, setKarmID] = useState(0);
   const [karmCheckFeedback, setKarmCheckFeedback] = useState("");
   const [contractPaused, setContractPaused] = useState(true);
