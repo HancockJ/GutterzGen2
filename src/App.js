@@ -58,39 +58,11 @@ export const StyledRoundButton = styled.button`
 
 export const ResponsiveWrapper = styled.div`
   display: flex;
-  flex: 1;
-  flex-direction: column;
-  justify-content: stretched;
-  align-items: stretched;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
   width: 100%;
-  @media (min-width: 76px) {
-    flex-direction: row;
-  }
-`;
-
-export const StyledLogo = styled.img`
-  width: 320px;
-  @media (min-width: 767px) {
-    width: 520px;
-  }
-
-`;
-
-export const StyledImg = styled.img`
-  /*box-shadow: 0px 5px 11px 2px rgba(0, 0, 0, 0.7);*/
-  //border: 4px dashed var(--secondary);
-  background-color: var(--accent);
-  border-radius: 100%;
-  //border: 8px solid #333;
-  display: none;
-  @media (min-width: 900px) {
-    display: flex;
-    width: 250px;
-  }
-  @media (min-width: 1000px) {
-    display: flex;
-    width: 300px;
-  }
 `;
 
 export const StyledLink = styled.a`
@@ -154,54 +126,23 @@ function App() {
         style={{backgroundColor: "var(--primary)"}}
       >
           {/* BANNER */}
-          <ResponsiveWrapper flex={1} style={{ padding: 0 }}>
-          <s.Container
-                       flex={1}
-                       jc={"left"}
-                       ai={"left"}
-                       style={{
-                         backgroundColor: "var(--primary)",
-                         padding: 10,
-                         paddingBottom: 0,
-                         borderRadius: 0,
-                         flexDirection: "row",
-                       }}
-          >
-            <a href="https://karmeleonsnft.com">
-                <svg xmlns="http://www.w3.org/2000/svg">
-                    <g fill="#fff">
-                        <path className="st0"
-                              d="M0 13.9V71h45.3V14.7H23.4v43.6h-1.5V14.9c0-.9.5-1.7 1.5-1.7h21.9V0H14.1C5.1 0 0 5.6 0 13.9zM70.2 58.3h-1.5V0H46.8v71h45.3V0H70.2zM115.4 0H93.6v71h31c8.1 0 13.8-6 13.8-13.6V19.1H117v37.8c0 .7-.3 1.3-.7 1.3h-.9V17.6h22.9V4.7h-22.9V0zM161.8 0h-21.9v71h31c8.1 0 13.8-6 13.8-13.6V19.1h-21.4v37.8c0 .7-.3 1.3-.7 1.3h-.9V17.6h22.9V4.7h-22.9V0zM186.2 71H231V57.9h-22.9v-1.6H231V43.5h-22.9V12.7h1.5V42H231V0h-44.8zM277.8 39V0h-45.3v71h21.9V56.8h1.6V71h21.9V49.2h-4.5c2.7-2.4 4.4-6 4.4-10.2zm-21.9 3.7c0 .7-.3 1.3-.7 1.3h-.9V12.7h1.5v30zM324.6 27.6V0h-45.2v13.2h23.4v1.5h-23.4V71h45.2V29.1h-21.8v29.2h-1.6V27.6z"/>
-                    </g>
-                </svg>
-            </a>
-          </s.Container>
-
-          <s.TextDescription
-              flex={1}
-              style={{
-                paddingRight: 20,
-                textAlign: "center",
-                alignItems: "center",
-                color: "white",
-              }}
-          >
-            VERIFIED SMART CONTRACT ADDRESS: <StyledLink target={"_blank"} href={CONFIG.SCAN_LINK} style={{textDecoration: "underline", color: "white"}}>{CONFIG.CONTRACT_ADDRESS}</StyledLink>
-          </s.TextDescription>
-
-          <s.TextDescription
-              style={{
-                paddingLeft: 20,
-                textAlign: "center",
-                alignItems: "center",
-                color: "white",
-              }}
-          >
-            <StyledLink style={{color: "white"}} target={"_blank"} href="https://twitter.com/GutterzNFT">
-              TWITTER
-            </StyledLink>
-          </s.TextDescription>
-
+          <ResponsiveWrapper flex={1} style={{ padding: 10}}>
+              <s.Container flex={1}>
+                <a href="https://karmeleonsnft.com">
+                    <svg xmlns="http://www.w3.org/2000/svg">
+                        <g fill="#fff">
+                            <path className="st0"
+                                  d="M0 13.9V71h45.3V14.7H23.4v43.6h-1.5V14.9c0-.9.5-1.7 1.5-1.7h21.9V0H14.1C5.1 0 0 5.6 0 13.9zM70.2 58.3h-1.5V0H46.8v71h45.3V0H70.2zM115.4 0H93.6v71h31c8.1 0 13.8-6 13.8-13.6V19.1H117v37.8c0 .7-.3 1.3-.7 1.3h-.9V17.6h22.9V4.7h-22.9V0zM161.8 0h-21.9v71h31c8.1 0 13.8-6 13.8-13.6V19.1h-21.4v37.8c0 .7-.3 1.3-.7 1.3h-.9V17.6h22.9V4.7h-22.9V0zM186.2 71H231V57.9h-22.9v-1.6H231V43.5h-22.9V12.7h1.5V42H231V0h-44.8zM277.8 39V0h-45.3v71h21.9V56.8h1.6V71h21.9V49.2h-4.5c2.7-2.4 4.4-6 4.4-10.2zm-21.9 3.7c0 .7-.3 1.3-.7 1.3h-.9V12.7h1.5v30zM324.6 27.6V0h-45.2v13.2h23.4v1.5h-23.4V71h45.2V29.1h-21.8v29.2h-1.6V27.6z"/>
+                        </g>
+                    </svg>
+                </a>
+              </s.Container>
+              <s.TextDescription flex={2} style={{ textAlign: "center", alignItems: "center", color: "white", paddingRight: "50px", overflow: "hidden"}} >
+                VERIFIED SMART CONTRACT ADDRESS: <StyledLink target={"_blank"} href={CONFIG.SCAN_LINK} style={{textDecoration: "underline", color: "white"}}>{CONFIG.CONTRACT_ADDRESS}</StyledLink>
+              </s.TextDescription>
+              <s.TextDescription flex={3} style={{justifyContent: "right"}}>
+                <StyledLink style={{color: "white"}} target={"_blank"} href="https://twitter.com/GutterzNFT">TWITTER</StyledLink>
+              </s.TextDescription>
         </ResponsiveWrapper>
 
       {/* GUTTERZ ART */}
@@ -209,7 +150,7 @@ function App() {
           <img className="logo" src="/setup/images/gutterzPreview.jpeg" alt="Karmeleons NFT" />
       </a>
 
-        <ResponsiveWrapper flex={1} style={{ padding: 0 }}>
+        <ResponsiveWrapper flex={2} style={{ padding: 0 }}>
           <s.Container className="mint-window"
             flex={2}
             jc={"center"}
