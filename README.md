@@ -1,2 +1,1 @@
-# Welcome to the Karmz free mint contract
-### Based off of hashlips minting contract.
+# Welcome to the Gutterz free mint contract DAPP
