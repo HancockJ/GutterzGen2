@@ -85,7 +85,7 @@ function GutterzMint(){
         }else{
             blockchain.smartContract.methods.hasGutterID(blockchain.account, gutterGangID).call({from: blockchain.account}).then(function (hasGutterID) {
                 if(hasGutterID){
-                    blockchain.smartContract.methods.CLAIM_COUNT(blockchain.account).call({from: blockchain.account}).then(function (res) {
+                    blockchain.smartContract.methods.balanceOf(blockchain.account).call({from: blockchain.account}).then(function (res) {
                         setMintMax(3 - parseInt(res));
                         if(parseInt(res) >= 3){
                             setFeedback("You've already minted all of your eligible Gutterz for this wallet.")
