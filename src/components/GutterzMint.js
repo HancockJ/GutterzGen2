@@ -3,6 +3,8 @@ import {StyledButton, StyledRoundButton} from "../App";
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {fetchData} from "../redux/data/dataActions";
+import styled from "styled-components";
+
 
 function GutterzMint(){
     const dispatch = useDispatch();
@@ -71,7 +73,7 @@ function GutterzMint(){
             })
             .then((receipt) => {
                 setFeedback(
-                    `Huzzah! Your ${CONFIG.NFT_NAME} have been minted. Visit OpenSea to view your NFTs`
+                    `Huzzah! Your ${CONFIG.NFT_NAME} have been minted. Your Gutterz will instant reveal on OpenSea in a few minutes.`
                 );
                 setMintMax(0);
                 setGutterGangID(-1);
@@ -140,10 +142,10 @@ function GutterzMint(){
                                 textAlign: "center",
                                 color: "var(--primary-text)",
                                 marginBottom: "10px",
-                                fontFamily: "Comic Sans MS, Comic Sans, cursive"
+                                fontFamily: "PxGrotesk Regular, sans-serif"
                             }}
                         >
-                            Enter an ID of a Gutter Species you own
+                            To see if you're eligible for the free mint, enter the ID of any OG Gutter species you hold.
                             <div className="flex-container claim-check-wrapper">Gutter ID #&nbsp;
                                 <input
                                     type="text"
@@ -214,7 +216,7 @@ function GutterzMint(){
                             textAlign: "center",
                             color: "var(--primary-text)",
                             marginBottom: "10px",
-                            fontFamily: "Comic Sans MS, Comic Sans, cursive"
+                            fontFamily: "PxGrotesk Regular, sans-serif"
                         }}
                     >
                         <span style={{fontSize: "18px" ,fontWeight: "bold"}}>Gang gang! You can mint up to {mintMax} Gutterz from this wallet.</span>
@@ -250,7 +252,7 @@ function GutterzMint(){
                             style={{
                                 textAlign: "center",
                                 color: "var(--accent-text)",
-                                fontSize: "36px" ,
+                                fontSize: "36px"
                             }}
                             disabled={claimingNft ? 1 : 0}
                             onClick={(e) => {
@@ -267,7 +269,13 @@ function GutterzMint(){
                         style={{
                             padding: 10,
                             margin: 20,
-                            fontSize: 27,
+                            fontSize: "36px" ,
+                            paddingTop: "22px",
+                            paddingBottom: "16px",
+                            paddingRight: "30px",
+                            paddingLeft: "30px",
+                            borderRadius: "6px",
+                            border: "none",
                             lineHeight: 1,
                             textTransform: "uppercase",
                             backgroundColor: "#72ab65",
@@ -290,7 +298,7 @@ function GutterzMint(){
                             textAlign: "center",
                             color: "var(--primary-text)",
                             marginBottom: "10px",
-                            fontFamily: "Comic Sans MS, Comic Sans, cursive"
+                            fontFamily: "PxGrotesk Regular, sans-serif"
                         }}
                     >
                         <span style={{fontSize: "18px" ,fontWeight: "bold"}}>{feedback}</span>
