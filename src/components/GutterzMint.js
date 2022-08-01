@@ -46,8 +46,7 @@ function GutterzMint(){
                 setFeedback("Contract is currently paused. Follow @GutterzNFT on twitter for updates.");
             }
         });
-
-        console.log("***");
+        
         const configResponse = await fetch("/setup/config.json", {
             headers: {
                 "Content-Type": "application/json",
