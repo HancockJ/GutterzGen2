@@ -33,12 +33,21 @@ function GutterzMint(){
     const [feedback, setFeedback] = useState(null);
     const [mintAmount, setMintAmount] = useState(1);
     const [mintMax, setMintMax] = useState(0);
+    const [paused, setPaused] = useState(true);
 
     const handleGutterGangIDChange = (e) => {
         setGutterGangID(e.target.value);
     }
 
     const getConfig = async () => {
+        blockchain.smartContract.methods.paused().call().then((isPaused) => {
+            setPaused(isPaused)
+            if(isPaused){
+                setFeedback("Contract is currently paused. Follow @GutterzNFT on twitter for updates.");
+            }
+        });
+
+        console.log("***");
         const configResponse = await fetch("/setup/config.json", {
             headers: {
                 "Content-Type": "application/json",
@@ -71,7 +80,7 @@ function GutterzMint(){
                 setMintMax(0);
                 setGutterGangID(null)
             })
-            .then((receipt) => {
+            .then(() => {
                 setFeedback(
                     `Huzzah! Your ${CONFIG.NFT_NAME} have been minted. Your Gutterz will instant reveal on OpenSea in a few minutes.`
                 );
@@ -136,7 +145,7 @@ function GutterzMint(){
         >
             <s.SpacerSmall />
                 { /* VERIFY GUTTER SCREEN */
-                    !verified ? (
+                    verified || paused ? null : (
                         <s.TextDescription
                             style={{
                                 textAlign: "center",
@@ -185,10 +194,10 @@ function GutterzMint(){
                                 </StyledButton>
                             </div>
                         </s.TextDescription>
-                    ) : null}
+                    )}
             <s.SpacerMedium />
             { /* MINT MENU */
-                verified && !claimingNft ? (
+                verified && !claimingNft && !paused ? (
                 <>
                 <s.Container ai={"center"} jc={"center"} fd={"column"}>
                         <s.TextTitle
