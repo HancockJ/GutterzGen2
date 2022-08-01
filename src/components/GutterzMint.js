@@ -33,12 +33,20 @@ function GutterzMint(){
     const [feedback, setFeedback] = useState(null);
     const [mintAmount, setMintAmount] = useState(1);
     const [mintMax, setMintMax] = useState(0);
+    const [paused, setPaused] = useState(true);
 
     const handleGutterGangIDChange = (e) => {
         setGutterGangID(e.target.value);
     }
 
     const getConfig = async () => {
+        blockchain.smartContract.methods.paused().call().then((isPaused) => {
+            setPaused(isPaused)
+            if(isPaused){
+                setFeedback("Contract is currently paused. Follow @GutterzNFT on twitter for updates.");
+            }
+        });
+
         const configResponse = await fetch("/setup/config.json", {
             headers: {
                 "Content-Type": "application/json",
@@ -136,7 +144,7 @@ function GutterzMint(){
         >
             <s.SpacerSmall />
                 { /* VERIFY GUTTER SCREEN */
-                    !verified ? (
+                    verified || paused ? null : (
                         <s.TextDescription
                             style={{
                                 textAlign: "center",
@@ -185,10 +193,10 @@ function GutterzMint(){
                                 </StyledButton>
                             </div>
                         </s.TextDescription>
-                    ) : null}
+                    )}
             <s.SpacerMedium />
             { /* MINT MENU */
-                verified && !claimingNft ? (
+                verified && !claimingNft  && !paused ? (
                 <>
                 <s.Container ai={"center"} jc={"center"} fd={"column"}>
                         <s.TextTitle
