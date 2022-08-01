@@ -6,7 +6,6 @@
 # Node artifact files
 node_modules/
 dist/
-build/**/*
 
 # Compiled Java class files
 *.class
@@ -51,3 +50,5 @@ Thumbs.db
 
 build/index.html
 build/asset-manifest.json
+package-lock.json
+build/
