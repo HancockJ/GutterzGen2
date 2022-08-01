@@ -1,6 +1,6 @@
 {
-  "short_name": "KRMZ",
-  "name": "Karmz",
+  "short_name": "GTRZ",
+  "name": "Gutterz",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +20,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#6c3aad",
+  "background_color": "#0000000"
 }
