@@ -11,6 +11,7 @@
 body {
   font-family: 'PxGrotesk Regular';
   z-index: 0;
+  background: #000;
 }
  /* unvisited link */
  a:link {
@@ -170,4 +171,19 @@ body {
   max-width: 720px;
   object-fit: cover;
   object-position: bottom;
+}
+
+.footer {
+  font-size: 14px;
+  color: #777;
+  width: 100%;
+  background: #222;
+  height: auto;
+  padding: 40px 24px;
+  justify-content: center;
+}
+
+.footer a {
+  text-decoration: none;
+  line-height: 1.5;
 }
