@@ -6,8 +6,8 @@ RewriteEngine On
 # | Handle Errors                                             |
 # ----------------------------------------------------------------------
 
-ErrorDocument 404 https://karmeleonsnft.com/404/
-ErrorDocument 500 https://karmeleonsnft.com/500/
+ErrorDocument 404 https://gutterznft.com/404/
+ErrorDocument 500 https://gutterznft.com/500/
 
 
 # ----------------------------------------------------------------------
@@ -17,9 +17,9 @@ ErrorDocument 500 https://karmeleonsnft.com/500/
 # force https site-wide
 RewriteCond %{HTTPS} off
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-#RewriteRule ^(.*)$ https://mint.karmeleonsnft.com/$1 [R,L]
+#RewriteRule ^(.*)$ https://mint.gutterznft.com/$1 [R,L]
 
 
 # force www
-#RewriteCond %{HTTP_HOST} ^mint.karmeleonsnft.com [NC]
-#RewriteRule ^(.*)$ http://mint.karmeleonsnft.com/$1 [R=301,L]
+#RewriteCond %{HTTP_HOST} ^mint.gutterznft.com [NC]
+#RewriteRule ^(.*)$ http://mint.gutterznft.com/$1 [R=301,L]

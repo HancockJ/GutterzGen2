@@ -48,11 +48,11 @@ const providerOptions = {
   walletlink: {
     package: WalletLink, // Required
     options: {
-      appName: "Karmz", // Required
+      appName: "Gutterz", // Required
       infuraId: INFURA_ID, // Required unless you provide a JSON RPC url; see `rpc` below
       rpc: "https://mainnet.infura.io/v3/1433395633c5411ca33ffd2329dea25b", // Optional if `infuraId` is provided; otherwise it's required
       chainId: 1, // Optional. It defaults to 1 if not provided
-      appLogoUrl: "https://mint.karmeleonsnft.com/setup/images/logo512.png", // Optional. Application logo image URL. favicon is used if unspecified
+      appLogoUrl: "https://gutterznft.com/setup/images/logo512.png", // Optional. Application logo image URL. favicon is used if unspecified
       darkMode: false, // Optional. Use dark theme, defaults to false
     },
   },
