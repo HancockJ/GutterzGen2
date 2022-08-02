@@ -1,8 +1,10 @@
 {
-  "CONTRACT_ADDRESS": "0x7885ac7230b5F0e4d0d271E8244B897488BD0E36",
-  "SCAN_LINK": "https://rinkeby.etherscan.io/address/0x7885ac7230b5F0e4d0d271E8244B897488BD0E36",
+  "INFURA_ID": "1433395633c5411ca33ffd2329dea25b",
+  "CONTRACT_ADDRESS": "0xbbED238C724B2c26EC207fD8E9b3AC79E7B5B873",
+  "SCAN_LINK": "https://rinkeby.etherscan.io/address/0xbbED238C724B2c26EC207fD8E9b3AC79E7B5B873",
   "NETWORK": {
-    "NAME": "Rinkeby",
+    "_NETWORK_OPTIONS_COMMENT_": "Ethereum: Name=mainnet, ID=1  &  Rinkeby: Name=rinkeby, ID=4",
+    "NAME": "rinkeby",
     "SYMBOL": "ETH",
     "ID": 4
   },
@@ -16,3 +18,4 @@
   "MARKETPLACE_LINK": "https://opensea.io/collection/gutterz",
   "SHOW_BACKGROUND": true
 }
+

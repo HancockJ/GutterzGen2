@@ -258,7 +258,12 @@ function App() {
             }}
           >{blockchain.account === "" ||
           blockchain.smartContract === null ? "Please connect to Ethereum mainnet with a wallet that holds a Gutter Cat Gang Species. Once you claim your free Gutterz, you cannot undo this action.\n" : "You are connected. Make sure you enter the ID of a Gutter Species you own in the wallet that's connected."}
+
           </s.TextDescription>
+          <div className="flex-container footer"><p>&copy; 2022 Karma Labz LLC. Art by <a
+              href="https://twitter.com/KeepItKarmelo" target="_blank">Karmelo</a>, founder/creator of the <a
+              href="https://karmeleonsnft.com" target="_blank">Karmeleons</a> (minting now). Not affilated with Gutter
+              Cat Gang.</p></div>
 
       </s.Container>
     </s.Screen>

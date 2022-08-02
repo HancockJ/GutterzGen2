@@ -1,63 +1,14 @@
-/*
-
-Coinbase Wallet integration/fallback with HashLips minting dapp by Karmelo
-
-The below code defaults to MetaMask and then if MetaMask isn't found, tries Wallet Connect rather than just dying and not 
-providing the user with any feedback, allowing the user to select Coinbase Wallet to mint. Confirmed to be working on both 
-mobile and desktop, including Safari. If anyone has any other updates to this please let me know via @KarmeleonsNFT on twitter.
-
-First you need to install the walletconnect dependencies via npm:
-
-npm install walletconnect --save
-npm install web3-provider --save
-npm install web3modal --save 
-npm install walletlink --save 
-
-Then replace the entirety of your blockchainActions.js in src/redux/blockchain if you've used the boilerplate code from the 
-repo with the below code, ensuring you replace 'My App Name' with your app's name:
-*/
-
-
-// constants
 import Web3EthContract from "web3-eth-contract";
 import Web3 from "web3";
 
 import Web3Modal from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import WalletLink from "walletlink";
-//import ReactGA from 'react-ga';
 
 
-// log
 import { fetchData } from "../data/dataActions";
 
-// wallet connect for coinbase wallet
-// adapted from https://github.com/HashLips/hashlips_nft_minting_dapp/issues/69
-const INFURA_ID = "1433395633c5411ca33ffd2329dea25b";
 
-const providerOptions = {
-  walletconnect: {
-    package: WalletConnectProvider, // required
-    options: {
-      infuraId: INFURA_ID, // required
-      rpc: {
-        4: "https://mainnet.infura.io/v3/1433395633c5411ca33ffd2329dea25b" // ETH
-      },
-    },
-  },
-  walletlink: {
-    package: WalletLink, // Required
-    options: {
-      appName: "Gutterz", // Required
-      infuraId: INFURA_ID, // Required unless you provide a JSON RPC url; see `rpc` below
-      rpc: "https://mainnet.infura.io/v3/1433395633c5411ca33ffd2329dea25b", // Optional if `infuraId` is provided; otherwise it's required
-      chainId: 1, // Optional. It defaults to 1 if not provided
-      appLogoUrl: "https://gutterznft.com/setup/images/logo512.png", // Optional. Application logo image URL. favicon is used if unspecified
-      darkMode: false, // Optional. Use dark theme, defaults to false
-    },
-  },
-};
-// end wallet connect options
 
 const connectRequest = () => {
   return {
@@ -103,6 +54,30 @@ export const connect = () => {
       },
     });
     const CONFIG = await configResponse.json();
+    const chainID = CONFIG.NETWORK.ID;
+    const providerOptions = {
+      walletconnect: {
+        package: WalletConnectProvider,
+        options: {
+          infuraId: CONFIG.INFURA_ID,
+          rpc: {
+            chainID: "https://" + CONFIG.NETWORK.NAME + ".infura.io/v3/" + CONFIG.INFURA_ID
+          },
+        },
+      },
+      walletlink: {
+        package: WalletLink,
+        options: {
+          appName: CONFIG.NFT_NAME,
+          infuraId: CONFIG.INFURA_ID,
+          rpc: "https://" + CONFIG.NETWORK.NAME + ".infura.io/v3/" + CONFIG.INFURA_ID,
+          chainId: chainID,
+          appLogoUrl: "https://gutterznft.com/setup/images/logo512.png",
+          darkMode: false,
+        },
+      },
+    };
+
     const { ethereum } = window;
     const metamaskIsInstalled = ethereum && ethereum.isMetaMask;
     if (metamaskIsInstalled) {
