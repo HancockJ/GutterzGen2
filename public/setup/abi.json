@@ -422,6 +422,13 @@
 	},
 	{
 		"inputs": [],
+		"name": "reveal",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
 		"name": "revealed",
 		"outputs": [
 			{
