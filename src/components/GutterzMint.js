@@ -3,7 +3,6 @@ import {StyledButton, StyledRoundButton} from "../App";
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {fetchData} from "../redux/data/dataActions";
-import styled from "styled-components";
 
 
 function GutterzMint(){
@@ -26,6 +25,8 @@ function GutterzMint(){
         MARKETPLACE_LINK: "",
         SHOW_BACKGROUND: false,
     });
+
+    const [eligibleCount, setEligibleCount] = useState(0);
 
     const [verified, setVerified] = useState(false);
     const [gutterGangID, setGutterGangID] = useState(0);
@@ -88,6 +89,18 @@ function GutterzMint(){
                 dispatch(fetchData(blockchain.account));
             });
     };
+
+    const checkHolderStatus = () => {
+        blockchain.smartContract.methods.checkWalletEligibility(blockchain.account).call({from: blockchain.account}).then(function (res) {
+            if(res[0]){
+                setEligibleCount(res[1])
+            }else{
+                setEligibleCount(0)
+            }
+        }).catch(function (err) {
+            console.log(err);
+        });
+    }
 
     const verifyGutterGang = () => {
         if(gutterGangID < 1 || gutterGangID > 3000){
@@ -153,7 +166,8 @@ function GutterzMint(){
                                 fontFamily: "PxGrotesk Regular, sans-serif"
                             }}
                         >
-                            To see if you're eligible for the free mint, enter the ID of any OG Gutter species you hold.
+                            {checkHolderStatus()}
+                            {blockchain.account} Can mint {eligibleCount} for free.
                             <div className="flex-container claim-check-wrapper">Gutter ID #&nbsp;
                                 <input
                                     type="text"

@@ -1,10 +1,10 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { connect } from "./redux/blockchain/blockchainActions";
 import { fetchData } from "./redux/data/dataActions";
 import * as s from "./styles/globalStyles";
 import styled from "styled-components";
-import GutterzMint from "./components/GutterzMint";
+import GutterzMint from "./components/Gutterz2Mint";
 
 
 export const StyledButton = styled.button`
@@ -165,31 +165,13 @@ function App() {
           >
             {blockchain.account === "" ||
               blockchain.smartContract === null ? (
-              <s.TextTitle
-              style={{
-                textAlign: "center",
-                fontSize: 44,
-                marginTop: 20,
-                marginBottom: 20,
-                lineHeight: 1.2,
-                fontFamily: "PxGrotesk Bold",
-                color: "var(--accent-text)",
-              }}
-              >
-                FREE MINT
-                <s.TextDescription
-                  style={{ textAlign: "center", fontFamily:"PxGrotesk Regular", marginTop:6, color: "var(--accent-text)" }}
-                >
-                  FOR OG GUTTER CAT GANG SPECIES HOLDERS
+              <s.TextTitle style={{textAlign: "center", fontSize: 44, marginTop: 20, marginBottom: 20, lineHeight: 1.2, fontFamily: "PxGrotesk Bold", color: "var(--accent-text)"}}>
+                GUTTERZ SPECIES 2
+                <s.TextDescription style={{ textAlign: "center", fontFamily:"PxGrotesk Regular", marginTop:6, color: "var(--accent-text)" }}>
+                  MINT NOW
                 </s.TextDescription>
-
               </s.TextTitle>
-              
-              ) 
-              
-              
-              :
-                <GutterzMint />}
+              ) : <GutterzMint />}
 
             {Number(data.totalSupply) >= CONFIG.MAX_SUPPLY ? (
               <>
@@ -257,8 +239,7 @@ function App() {
               paddingBottom: "44px"
             }}
           >{blockchain.account === "" ||
-          blockchain.smartContract === null ? "Please connect to Ethereum mainnet with a wallet that holds an OG  Gutter Cat Gang Species. Once you claim your free Gutterz, you cannot undo this action.\n" : "You are connected. Make sure you enter the ID of a OG Gutter Species you hold in this wallet."}
-
+          blockchain.smartContract === null ? "Please connect to Ethereum " + CONFIG.NETWORK.NAME + " with a wallet that holds an OG  Gutter Cat Gang Species. Once you claim your free Gutterz, you cannot undo this action.\n" : "You are connected with address " + blockchain.account}
           </s.TextDescription>
           <div className="flex-container footer"><p>&copy; 2022 Karmic Labs. Art by <a
               href="https://twitter.com/KeepItKarmelo" target="_blank">Karmelo</a>, founder/creator of the <a

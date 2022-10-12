@@ -99,11 +99,30 @@
 		"type": "event"
 	},
 	{
-		"inputs": [],
-		"name": "CATS_ADDRESS",
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "CLAIMED",
 		"outputs": [
 			{
-				"internalType": "contract IERC1155",
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "GUTTERZ_CONTRACT",
+		"outputs": [
+			{
+				"internalType": "contract IERC721",
 				"name": "",
 				"type": "address"
 			}
@@ -113,7 +132,7 @@
 	},
 	{
 		"inputs": [],
-		"name": "DOGS_ADDRESS",
+		"name": "KARMELEONS_CONTRACT",
 		"outputs": [
 			{
 				"internalType": "contract IERC721Enumerable",
@@ -152,12 +171,12 @@
 	},
 	{
 		"inputs": [],
-		"name": "PIGEONS_ADDRESS",
+		"name": "PUBLIC_COST",
 		"outputs": [
 			{
-				"internalType": "contract IERC721Enumerable",
+				"internalType": "uint256",
 				"name": "",
-				"type": "address"
+				"type": "uint256"
 			}
 		],
 		"stateMutability": "view",
@@ -165,12 +184,12 @@
 	},
 	{
 		"inputs": [],
-		"name": "RATS_ADDRESS",
+		"name": "PUBLIC_MINT_ON",
 		"outputs": [
 			{
-				"internalType": "contract IERC1155",
+				"internalType": "bool",
 				"name": "",
-				"type": "address"
+				"type": "bool"
 			}
 		],
 		"stateMutability": "view",
@@ -240,6 +259,30 @@
 		"type": "function"
 	},
 	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_wallet",
+				"type": "address"
+			}
+		],
+		"name": "checkWalletEligibility",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"inputs": [],
 		"name": "getAllOwners",
 		"outputs": [
@@ -277,14 +320,9 @@
 				"internalType": "address",
 				"name": "_address",
 				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_id",
-				"type": "uint256"
 			}
 		],
-		"name": "hasGutterID",
+		"name": "hasGutterz",
 		"outputs": [
 			{
 				"internalType": "bool",
@@ -293,6 +331,19 @@
 			}
 		],
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_amount",
+				"type": "uint256"
+			}
+		],
+		"name": "holdersMint",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -317,24 +368,6 @@
 			}
 		],
 		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_amount",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_id",
-				"type": "uint256"
-			}
-		],
-		"name": "mint",
-		"outputs": [],
-		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -411,6 +444,19 @@
 			}
 		],
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_amount",
+				"type": "uint256"
+			}
+		],
+		"name": "publicMint",
+		"outputs": [],
+		"stateMutability": "payable",
 		"type": "function"
 	},
 	{
@@ -512,12 +558,38 @@
 	{
 		"inputs": [
 			{
+				"internalType": "uint256",
+				"name": "_newCost",
+				"type": "uint256"
+			}
+		],
+		"name": "setCost",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "bool",
 				"name": "_state",
 				"type": "bool"
 			}
 		],
 		"name": "setPaused",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "bool",
+				"name": "_state",
+				"type": "bool"
+			}
+		],
+		"name": "setPublicMint",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -594,6 +666,19 @@
 				"internalType": "string",
 				"name": "",
 				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "totalKarmeleonSupply",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
 			}
 		],
 		"stateMutability": "view",
@@ -679,6 +764,19 @@
 		"name": "withdraw",
 		"outputs": [],
 		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "yourGutterzSupply",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
 		"type": "function"
 	}
 ]
