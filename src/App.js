@@ -153,16 +153,16 @@ function App() {
           <img className="img-fluid" src="/setup/images/gutterzSplash.jpg" alt="Gutterz NFT" />
       </div>
 
-        <ResponsiveWrapper flex={2} style={{ padding: 0 }}>
+        <ResponsiveWrapper flex={2} style={{ padding: 0, background: "none"}}>
           <s.Container className="mint-window"
             flex={2}
             jc={"center"}
             ai={"center"}
             style={{
-              backgroundColor: "transparent",
               padding: 10,
               paddingBottom: 100,
               //borderRadius: 100,
+                background: "transparent"
             }}
           >
             {blockchain.account === "" ||
