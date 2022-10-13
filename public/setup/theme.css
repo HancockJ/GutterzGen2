@@ -17,7 +17,7 @@ html {
  background: transparent;
 }
 body {
-  font-family: 'PxGrotesk Regular';
+  font-family: 'Archivo';
   z-index: 0;
 }
 
@@ -153,9 +153,10 @@ height: 200px;
   justify-content: center;
   margin-top: 20px;
   margin-bottom: 20px;
-  font-size: 24px;
+  font-size: 16px;
   flex-direction: column;
   color: #999;
+  font-weight: 700;
 }
 @media (min-width: 900px) {
   .claim-check-wrapper {

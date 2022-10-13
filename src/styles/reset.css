@@ -123,7 +123,7 @@ table {
   border-spacing: 0;
 }
 
-@font-face {
+/* @font-face {
   font-family: "PxGrotesk Regular";
   src: local("PxGrotesk Regular"), url(PxGrotesk-Regular.woff) format("woff");
 }
@@ -135,11 +135,11 @@ table {
 @font-face {
   font-family: "Teko Bold";
   src: local("Teko Bold"), url(Teko-Bold.woff) format("woff");
-}
+} */
 
 body {
   margin: 0;
-  font-family: "PxGrotesk Regular", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+  font-family: "Archivo", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
     "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -178,6 +178,7 @@ div {
 }
 
 button {
-  font-family: "Teko Bold", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+  font-family: "Archivo", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
   "Droid Sans", "Helvetica Neue", sans-serif;
+  font-weight: 700;
 }

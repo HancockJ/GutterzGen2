@@ -9,7 +9,7 @@ import GutterzMint from "./components/Gutterz2Mint";
 
 export const StyledButton = styled.button`
   padding-top: 22px;
-  padding-bottom: 16px;
+  padding-bottom: 22px;
   padding-right: 30px;
   padding-left: 30px;
   border-radius: 6px;
@@ -36,7 +36,6 @@ export const StyledRoundButton = styled.button`
   border: none;
   background-color: #222;
   padding: 10px;
-  font-weight: bold;
   font-size: 15px;
   color: var(--primary-text);
   width: 30px;
@@ -45,7 +44,8 @@ export const StyledRoundButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "PxGrotesk Bold";
+  font-family: "Archivo";
+  font-weight: bold;
   /*box-shadow: 0px 4px 0px -2px rgba(250, 250, 250, 0.3);
   -webkit-box-shadow: 0px 4px 0px -2px rgba(250, 250, 250, 0.3);
   -moz-box-shadow: 0px 4px 0px -2px rgba(250, 250, 250, 0.3);*/
@@ -174,9 +174,9 @@ function App() {
           >
             {blockchain.account === "" ||
               blockchain.smartContract === null ? (
-              <s.TextTitle style={{textAlign: "center", fontSize: 44, marginTop: 20, marginBottom: 20, lineHeight: 1.2, fontFamily: "PxGrotesk Bold", color: "var(--accent-text)"}}>
+              <s.TextTitle style={{textAlign: "center", fontSize: 44, marginTop: 20, marginBottom: 20, lineHeight: 1.2, fontFamily: "Archivo", fontWeight: "700", color: "var(--accent-text)"}}>
                 GUTTERZ SPECIES 2
-                <s.TextDescription style={{ textAlign: "center", fontFamily:"PxGrotesk Regular", marginTop:6, color: "var(--accent-text)" }}>
+                <s.TextDescription style={{ textAlign: "center", fontFamily:"Archivo", marginTop:6, color: "var(--accent-text)" }}>
                   CONNECT WALLET FOR ELIGIBILITY
                 </s.TextDescription>
               </s.TextTitle>

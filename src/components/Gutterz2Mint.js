@@ -185,9 +185,9 @@ function GutterzMint(){
             style={{
                 padding: 10,
                 margin: 20,
-                fontSize: "36px",
+                fontSize: "30px",
                 paddingTop: "22px",
-                paddingBottom: "16px",
+                paddingBottom: "22px",
                 paddingRight: "30px",
                 paddingLeft: "30px",
                 borderRadius: "6px",
@@ -236,7 +236,7 @@ function GutterzMint(){
                         textAlign: "center",
                         color: "var(--primary-text)",
                         marginBottom: "10px",
-                        fontFamily: "PxGrotesk Regular, sans-serif"
+                        fontFamily: "Archivo"
                     }}
                 >
                     <span style={{fontSize: "18px" ,fontWeight: "bold"}}>You're eligible to mint up to {eligibleCount} Gutterz Species 2 NFTs for free!</span>
@@ -256,7 +256,7 @@ function GutterzMint(){
                         textAlign: "center",
                         color: "var(--primary-text)",
                         marginBottom: "10px",
-                        fontFamily: "PxGrotesk Regular, sans-serif"
+                        fontFamily: "Archivo"
                     }}
                 >
                      <span style={{fontSize: "28px" ,fontWeight: "bold", textTransform: "uppercase", display: "flex", justifyContent: "center", padding: "20px", backgroundColor: "#000000"}}>Public mint of .07 ETH</span><br/>
@@ -275,7 +275,7 @@ function GutterzMint(){
                     textAlign: "center",
                     color: "var(--primary-text)",
                     marginBottom: "10px",
-                    fontFamily: "PxGrotesk Regular, sans-serif"
+                    fontFamily: "Archivo"
                 }}
             >
                 <span style={{fontSize: "18px" ,fontWeight: "bold"}}>Public Mint is currently closed. Follow @GutterzNFT on twitter for updates.</span>
@@ -290,7 +290,8 @@ function GutterzMint(){
                     style={{
                         textAlign: "center",
                         fontSize: 50,
-                        fontFamily: "PxGrotesk Bold",
+                        fontWeight: "bold",
+                        fontFamily: "Archivo",
                         color: "var(--accent-text)",
                     }}
                 >
@@ -332,7 +333,7 @@ function GutterzMint(){
                                 textAlign: "center",
                                 color: "var(--primary-text)",
                                 marginBottom: "10px",
-                                fontFamily: "PxGrotesk Regular, sans-serif"
+                                fontFamily: "Archivo"
                             }}
                         >
                             <span style={{fontSize: "18px" ,fontWeight: "bold"}}>{feedback}</span>
@@ -369,7 +370,8 @@ function GutterzMint(){
                 fontSize: 28,
                 marginBottom: 8,
                 lineHeight: 1.2,
-                fontFamily: "PxGrotesk Bold",
+                fontWeight: "bold",
+                fontFamily: "Archivo",
                 color: "var(--accent-text)",
             }}
         >
@@ -391,7 +393,7 @@ function GutterzMint(){
                 (
                     <div>
                         <p>Enter the ID of any Karmeleon to see if it's been used to claim a Gutterz Species 2.</p>
-                        <div className="flex-container claim-check-wrapper">Karmeleon #&nbsp;
+                        <div className="flex-container claim-check-wrapper">KARMELEON #&nbsp;&nbsp;
                             <input
                                 type="text"
                                 maxLength={4}

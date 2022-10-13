@@ -163,7 +163,7 @@ function GutterzMint(){
                                 textAlign: "center",
                                 color: "var(--primary-text)",
                                 marginBottom: "10px",
-                                fontFamily: "PxGrotesk Regular, sans-serif"
+                                fontFamily: "Archivo, sans-serif"
                             }}
                         >
                             {checkHolderStatus()}
@@ -217,7 +217,8 @@ function GutterzMint(){
                             style={{
                                 textAlign: "center",
                                 fontSize: 50,
-                                fontFamily: "PxGrotesk Bold",
+                                fontWeight: "700",
+                                fontFamily: "Archivo",
                                 color: "var(--accent-text)",
                             }}
                         >
@@ -238,7 +239,7 @@ function GutterzMint(){
                             textAlign: "center",
                             color: "var(--primary-text)",
                             marginBottom: "10px",
-                            fontFamily: "PxGrotesk Regular, sans-serif"
+                            fontFamily: "Archivo, sans-serif"
                         }}
                     >
                         <span style={{fontSize: "18px" ,fontWeight: "bold"}}>Gang gang! You can mint up to {mintMax} Gutterz from this wallet.</span>
@@ -264,7 +265,7 @@ function GutterzMint(){
                                 textAlign: "center",
                                 color: "var(--accent-text)",
                                 fontSize: "36px" ,
-                                fontWeight: "bold",
+                                fontWeight: "700",
                             }}
                         >
                             {mintAmount}
@@ -320,7 +321,7 @@ function GutterzMint(){
                             textAlign: "center",
                             color: "var(--primary-text)",
                             marginBottom: "10px",
-                            fontFamily: "PxGrotesk Regular, sans-serif"
+                            fontFamily: "Archivo, sans-serif"
                         }}
                     >
                         <span style={{fontSize: "18px" ,fontWeight: "bold"}}>{feedback}</span>
