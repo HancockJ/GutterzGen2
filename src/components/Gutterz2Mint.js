@@ -203,7 +203,7 @@ function GutterzMint(){
                 mint();
             }}
         >
-            Mint
+            Mint for .07 ETH
         </StyledButton>
         </>
         )
@@ -259,7 +259,12 @@ function GutterzMint(){
                         fontFamily: "PxGrotesk Regular, sans-serif"
                     }}
                 >
-                    <span style={{fontSize: "18px" ,fontWeight: "bold"}}>You need to own a Gutterz species 1 and at least 1 unused Karmeleon for free mint. You can still mint as many as you like for .07 ETH each though!</span>
+                     <span style={{fontSize: "28px" ,fontWeight: "bold", textTransform: "uppercase", display: "flex", justifyContent: "center", padding: "20px", backgroundColor: "#000000"}}>Public mint of .07 ETH</span><br/>
+                        
+                        <span style={{fontSize: "16px" ,fontWeight: "bold"}}>
+                        To mint free, you must hold a <a href="https://opensea.io/collection/gutterz" target="_blank">Gutterz NFT</a> &amp; at least 1 unused <a href="https://mint.karmeleonsnft.com" target="_blank">Karmeleon NFT</a>.</span>
+
+                    
                 </s.TextDescription>
                 {mintModule()}
             </>)

@@ -90,7 +90,7 @@ function App() {
     GAS_LIMIT: 0,
     MARKETPLACE: "",
     MARKETPLACE_LINK: "",
-    SHOW_BACKGROUND: false,
+    SHOW_BACKGROUND: true,
   });
 
   const getData = () => {
@@ -123,8 +123,10 @@ function App() {
       <s.Container
         flex={1}
         ai={"center"}
-        style={{backgroundColor: "var(--primary)"}
-      }
+        style={{
+          justifyContent: "space-between",
+        }}
+      
       >
           {/* BANNER */}
           <ResponsiveWrapper 
@@ -157,10 +159,10 @@ function App() {
             jc={"center"}
             ai={"center"}
             style={{
-              backgroundColor: "var(--primary)",
+              backgroundColor: "transparent",
               padding: 10,
               paddingBottom: 100,
-              borderRadius: 100,
+              //borderRadius: 100,
             }}
           >
             {blockchain.account === "" ||
@@ -168,7 +170,7 @@ function App() {
               <s.TextTitle style={{textAlign: "center", fontSize: 44, marginTop: 20, marginBottom: 20, lineHeight: 1.2, fontFamily: "PxGrotesk Bold", color: "var(--accent-text)"}}>
                 GUTTERZ SPECIES 2
                 <s.TextDescription style={{ textAlign: "center", fontFamily:"PxGrotesk Regular", marginTop:6, color: "var(--accent-text)" }}>
-                  MINT NOW
+                  CONNECT WALLET FOR ELIGIBILITY
                 </s.TextDescription>
               </s.TextTitle>
               ) : <GutterzMint />}
@@ -178,7 +180,7 @@ function App() {
                 <s.TextTitle
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
                 >
-                  All Gutterz have been claimed.
+                  All Gutterz have been minted.
                 </s.TextTitle>
                 <s.TextDescription
                   style={{ textAlign: "center", color: "var(--accent-text)" }}

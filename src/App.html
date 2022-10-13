@@ -132,7 +132,7 @@ function App() {
     GAS_LIMIT: 0,
     MARKETPLACE: "",
     MARKETPLACE_LINK: "",
-    SHOW_BACKGROUND: false,
+    SHOW_BACKGROUND: true,
   });
 
   const tokensHeld = useSelector((msg) => msg.sender);
@@ -215,7 +215,7 @@ function App() {
       <s.Container
         flex={1}
         ai={"center"}
-        style={{ padding: 24, backgroundColor: "var(--primary)" }}
+        style={{ padding: 24 }}
         image={CONFIG.SHOW_BACKGROUND ? "/setup/images/bg.png" : null}
       >
         <a href="https://gutterznft.com">
@@ -233,9 +233,9 @@ function App() {
             jc={"center"}
             ai={"center"}
             style={{
-              // backgroundColor: "var(--accent)",
+              
               padding: 24,
-              borderRadius: 24,
+              //borderRadius: 24,
               //border: "4px dashed var(--secondary)",
               //boxShadow: "0px 5px 11px 2px rgba(0,0,0,0.7)",
             }}
