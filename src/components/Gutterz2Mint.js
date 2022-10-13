@@ -355,9 +355,10 @@ function GutterzMint(){
                  ai={"center"}
                  style={{
                      // backgroundColor: "rgb(83,204,223)",
-                     paddingTop: 20,
+                     marginTop: 20,
+                     marginBottom: 20,
                      borderRadius: 0,
-                     borderTop: "4px solid rgb(83,204,223)",
+                     borderTop: "1px solid rgb(66,66,66)",
                      //boxShadow: "0px 5px 11px 2px rgba(0,0,0,0.7)",
                  }}
     >
@@ -416,8 +417,8 @@ function GutterzMint(){
                                     fontSize: 23,
                                     lineHeight: 1,
                                     textTransform: "uppercase",
-                                    backgroundColor: "#72ab65",
-                                    color: "#243b1f"
+                                    backgroundColor: "#6c3aad",
+                                    color: "#fff"
                                 }
                                 }
                                 disabled={claimingNft ? 1 : 0}
