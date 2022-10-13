@@ -28,7 +28,7 @@ function GutterzMint(){
 
     const [eligibleCount, setEligibleCount] = useState(0);
 
-    const [feedback, setFeedback] = useState("No feedback.");
+    const [feedback, setFeedback] = useState("");
     const [claimingNft, setClaimingNft] = useState(false);
     const [mintAmount, setMintAmount] = useState(1);
     const [paused, setPaused] = useState(true);
@@ -48,6 +48,9 @@ function GutterzMint(){
         });
         blockchain.smartContract.methods.paused().call().then((isPaused) => {
             setPaused(isPaused)
+            if(isPaused){
+                setFeedback("Contract is currently paused. Follow @GutterzNFT on twitter for updates")
+            }
         });
         blockchain.smartContract.methods.PUBLIC_MINT_ON().call().then((status) => {
             setPublicMint(status)
@@ -90,9 +93,9 @@ function GutterzMint(){
     const mint = () => {
         let gasLimit = CONFIG.GAS_LIMIT;
         let totalGasLimit = String(gasLimit * mintAmount);
-        /*`Sit tight while we mint your ${CONFIG.NFT_NAME}...`)*/
+        setFeedback(`Sit tight while we mint your ${CONFIG.NFT_NAME}...`)
         setClaimingNft(true);
-        if(publicMint){
+        if(eligibleCount < 1){
             mintPublic(totalGasLimit);
         }else{
             mintHolders(totalGasLimit);
@@ -108,9 +111,9 @@ function GutterzMint(){
             value: totalCostWei,
         }).once("error", (err) => {
             console.log(err);
-            /* "Sorry, something went wrong please try again later.") */
+            setFeedback("Sorry, something went wrong please try again later.")
         }).then(() => {
-            /* `Huzzah! Your ${CONFIG.NFT_NAME} have been minted. Your Gutterz will instant reveal on OpenSea in a few minutes.` */
+            setFeedback(`Huzzah! Your ${CONFIG.NFT_NAME} have been minted. Your Gutterz will instant reveal on OpenSea in a few minutes.`)
         });
     };
 
@@ -121,9 +124,9 @@ function GutterzMint(){
             from: blockchain.account,
         }).once("error", (err) => {
             console.log(err);
-            /* "Sorry, something went wrong please try again later.") */
+            setFeedback("Sorry, something went wrong please try again later.")
         }).then(() => {
-            /* `Huzzah! Your ${CONFIG.NFT_NAME} have been minted. Your Gutterz will instant reveal on OpenSea in a few minutes.` */
+            setFeedback(`Huzzah! Your ${CONFIG.NFT_NAME} have been minted. Your Gutterz will instant reveal on OpenSea in a few minutes.`)
         });
     };
 
@@ -192,7 +195,7 @@ function GutterzMint(){
             }
             onClick={(e) => {
                 e.preventDefault();
-                // claimNFTs();
+                mint();
             }}
         >
             Mint
@@ -209,8 +212,16 @@ function GutterzMint(){
         return (
             <>
                 {supplyView()}
-                {/*{setFeedback("You're eligible to mint up to " + eligibleCount + " Gutterz Species 2 NFTs for free!")}*/}
-                {feedbackView()}
+                <s.TextDescription
+                    style={{
+                        textAlign: "center",
+                        color: "var(--primary-text)",
+                        marginBottom: "10px",
+                        fontFamily: "PxGrotesk Regular, sans-serif"
+                    }}
+                >
+                    <span style={{fontSize: "18px" ,fontWeight: "bold"}}>You're eligible to mint up to {eligibleCount} Gutterz Species 2 NFTs for free!</span>
+                </s.TextDescription>
                 {mintModule()}
             </>
         )
@@ -219,27 +230,33 @@ function GutterzMint(){
     const publicView = () => {
         console.log("Public View")
         if(publicMint){
-            setFeedback("You don't have X for any free mints. You can still mint as many as you like for .07 ETH each")
             return (<>
                 {supplyView()}
-                {feedbackView()}
+                <s.TextDescription
+                    style={{
+                        textAlign: "center",
+                        color: "var(--primary-text)",
+                        marginBottom: "10px",
+                        fontFamily: "PxGrotesk Regular, sans-serif"
+                    }}
+                >
+                    <span style={{fontSize: "18px" ,fontWeight: "bold"}}>You need to own a Gutterz species 1 and at least 1 unused Karmeleon for free mint. You can still mint as many as you like for .07 ETH each though!</span>
+                </s.TextDescription>
                 {mintModule()}
             </>)
         } else {
-            // setFeedback("Public Mint is currently closed. Follow @GutterzNFT on twitter for updates.")
-            return feedbackView();
+            return (
+            <s.TextDescription
+                style={{
+                    textAlign: "center",
+                    color: "var(--primary-text)",
+                    marginBottom: "10px",
+                    fontFamily: "PxGrotesk Regular, sans-serif"
+                }}
+            >
+                <span style={{fontSize: "18px" ,fontWeight: "bold"}}>Public Mint is currently closed. Follow @GutterzNFT on twitter for updates.</span>
+            </s.TextDescription>)
         }
-    }
-
-    const pausedView = () => {
-        console.log("Paused View")
-        return (
-            <>
-                {/*{setFeedback("Contract is currently paused. Follow @GutterzNFT on twitter for updates")}*/}
-                {feedbackView()}
-            </>
-        )
-
     }
 
     const supplyView = () => {
@@ -270,21 +287,6 @@ function GutterzMint(){
 
     };
 
-    const feedbackView = () => {
-        return (
-            <s.TextDescription
-                style={{
-                    textAlign: "center",
-                    color: "var(--primary-text)",
-                    marginBottom: "10px",
-                    fontFamily: "PxGrotesk Regular, sans-serif"
-                }}
-            >
-                <span style={{fontSize: "18px" ,fontWeight: "bold"}}>{feedback}</span>
-            </s.TextDescription>
-        )
-    }
-
     return(
         <s.Container className="claim-window"
                      flex={2}
@@ -298,17 +300,29 @@ function GutterzMint(){
                      }}
         >
             {
-                paused ?
-                (
-                    pausedView()
-                ) : (
-                    eligibleCount > 0 ?
+                claimingNft || paused ?
                     (
-                       eligibleView()
+                        // Paused contract or claiming NFT view
+                        <s.TextDescription
+                            style={{
+                                textAlign: "center",
+                                color: "var(--primary-text)",
+                                marginBottom: "10px",
+                                fontFamily: "PxGrotesk Regular, sans-serif"
+                            }}
+                        >
+                            <span style={{fontSize: "18px" ,fontWeight: "bold"}}>{feedback}</span>
+                        </s.TextDescription>
                     ) : (
-                            publicView()
+                        eligibleCount > 0 ?
+                            (
+                                // Eligible Holder view
+                                eligibleView()
+                            ) : (
+                                // Public view
+                                publicView()
+                            )
                     )
-                )
             }
         </s.Container>
     )
