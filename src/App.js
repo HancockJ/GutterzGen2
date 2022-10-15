@@ -127,11 +127,10 @@ function App() {
         style={{
           justifyContent: "space-between",
         }}
-      
       >
           {/* BANNER */}
           <ResponsiveWrapper 
-          flex={1} 
+          flex={1}
           className={"nav"}
           >
               <s.Container flex={1} className={"logo-container"}>
@@ -160,101 +159,90 @@ function App() {
           <img className="img-fluid" src="/setup/images/gutterzSplash.jpg" alt="Gutterz NFT" />
       </div>
 
-        <ResponsiveWrapper flex={2} style={{ padding: 0, background: "none"}}>
-          <s.Container className="mint-window"
-            flex={2}
-            jc={"center"}
-            ai={"center"}
-            style={{
-              // padding: 10,
-              // paddingBottom: 100,
-              //borderRadius: 100,
-                background: "transparent"
-            }}
-          >
+      <s.Container className="mint-window"
+        flex={2}
+        jc={"center"}
+        ai={"center"}
+        style={{
+            background: "transparent",
+        }}
+      >
+        {blockchain.account === "" ||
+          blockchain.smartContract === null ? (
+          <s.TextTitle style={{textAlign: "center", fontSize: 44, marginTop: 20, marginBottom: 20, lineHeight: 1.2, fontFamily: "PxGrotesk Bold", color: "var(--accent-text)"}}>
+            GUTTERZ SPECIES 2
+            <s.TextDescription style={{ textAlign: "center", fontFamily:"PxGrotesk Regular", marginTop:6, color: "var(--accent-text)" }}>
+              CONNECT WALLET FOR ELIGIBILITY
+            </s.TextDescription>
+          </s.TextTitle>
+          ) : <GutterzMint />}
+
+        {Number(data.totalSupply) >= CONFIG.MAX_SUPPLY ? (
+          <>
+            <s.TextTitle
+              style={{ textAlign: "center", color: "var(--accent-text)" }}
+            >
+              All Gutterz have been minted.
+            </s.TextTitle>
+            <s.TextDescription
+              style={{ textAlign: "center", color: "var(--accent-text)" }}
+            >
+              You can still find {CONFIG.NFT_NAME} on
+            </s.TextDescription>
+            <s.SpacerSmall />
+            <StyledLink target={"_blank"} href={CONFIG.MARKETPLACE_LINK}>
+              {CONFIG.MARKETPLACE}
+            </StyledLink>
+          </>
+        ) : (
+          <>
             {blockchain.account === "" ||
-              blockchain.smartContract === null ? (
-              <s.TextTitle style={{textAlign: "center", fontSize: 44, marginTop: 20, marginBottom: 20, lineHeight: 1.2, fontFamily: "Archivo", fontWeight: "700", color: "var(--accent-text)"}}>
-                GUTTERZ SPECIES 2
-                <s.TextDescription style={{ textAlign: "center", fontFamily:"Archivo", marginTop:6, color: "var(--accent-text)" }}>
-                  CONNECT WALLET FOR ELIGIBILITY
-                </s.TextDescription>
-              </s.TextTitle>
-              ) : <GutterzMint />}
-
-            {Number(data.totalSupply) >= CONFIG.MAX_SUPPLY ? (
-              <>
-                <s.TextTitle
-                  style={{ textAlign: "center", color: "var(--accent-text)" }}
-                >
-                  All Gutterz have been minted.
-                </s.TextTitle>
-                <s.TextDescription
-                  style={{ textAlign: "center", color: "var(--accent-text)" }}
-                >
-                  You can still find {CONFIG.NFT_NAME} on
-                </s.TextDescription>
+            blockchain.smartContract === null ? (
+              <s.Container ai={"center"} jc={"center"}>
                 <s.SpacerSmall />
-                <StyledLink target={"_blank"} href={CONFIG.MARKETPLACE_LINK}>
-                  {CONFIG.MARKETPLACE}
-                </StyledLink>
-              </>
-            ) : (
-              <>
-
-                {blockchain.account === "" ||
-                blockchain.smartContract === null ? (
-                  <s.Container ai={"center"} jc={"center"}>
+                <StyledButton
+                  onClick={(e) => {
+                    e.preventDefault();
+                    dispatch(connect());
+                    getData();
+                  }}
+                  style={{
+                  color: "white",
+                  backgroundColor: "#72ab65",
+                }}
+                >
+                  CONNECT
+                </StyledButton>
+                {blockchain.errorMsg !== "" ? (
+                  <>
                     <s.SpacerSmall />
-                    <StyledButton
-                      onClick={(e) => {
-                        e.preventDefault();
-                        dispatch(connect());
-                        getData();
-                      }}
+                    <s.TextDescription
                       style={{
-                      color: "white",
-                      backgroundColor: "#72ab65",
-                    }}
+                        textAlign: "center",
+                        color: "var(--accent-text)",
+                      }}
                     >
-                      CONNECT
-                    </StyledButton>
-                    {blockchain.errorMsg !== "" ? (
-                      <>
-                        <s.SpacerSmall />
-                        <s.TextDescription
-                          style={{
-                            textAlign: "center",
-                            color: "var(--accent-text)",
-                          }}
-                        >
-                          {blockchain.errorMsg}
-                        </s.TextDescription>
-                      </>
-                    ) : null}
-                  </s.Container>
-                ) : null
-                }
-              </>
-            )}
-          </s.Container>
-        </ResponsiveWrapper>
-
-          {/* BOTTOM TEXT */}
-          <s.TextDescription
-            style={{
-              textAlign: "center",
-              color: "#777",
-              paddingBottom: "44px"
-            }}
-          >{blockchain.account === "" ||
-          blockchain.smartContract === null ? "Please connect to Ethereum " + CONFIG.NETWORK.NAME + " with a wallet that holds an OG  Gutter Cat Gang Species. Once you claim your free Gutterz, you cannot undo this action.\n" : "You are connected with address " + blockchain.account}
-          </s.TextDescription>
-          <div className="flex-container footer"><p>&copy; 2022 Karmic Labs. Art by <a
-              href="https://twitter.com/KeepItKarmelo" target="_blank">Karmelo</a>, founder/creator of the <a
-              href="https://karmeleonsnft.com" target="_blank">Karmeleons</a> (minting now). Not affiliated with Gutter Cat Gang.</p></div>
-
+                      {blockchain.errorMsg}
+                    </s.TextDescription>
+                  </>
+                ) : null}
+              </s.Container>
+            ) : null
+            }
+          </>
+        )}
       </s.Container>
+
+      <div className="flex-container footer">
+          <p>
+              &copy; 2022 Karmic Labs. Art by <a
+              href="https://twitter.com/KeepItKarmelo" target="_blank">Karmelo</a>, founder/creator of the <a
+              href="https://karmeleonsnft.com" target="_blank">Karmeleons</a> (minting now). Not affiliated with Gutter Cat Gang.
+          </p>
+      </div>
+      </s.Container>
+        <s.SpacerLarge />
+        <s.SpacerLarge />
     </s.Screen>
   );
 }

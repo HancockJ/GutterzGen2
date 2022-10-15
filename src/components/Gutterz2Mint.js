@@ -313,16 +313,10 @@ function GutterzMint(){
     };
 
     return(
-        <>
         <s.Container className="claim-window"
                      flex={2}
                      jc={"center"}
                      ai={"center"}
-                     style={{
-                         paddingBottom: 50,
-                         paddingTop: 0,
-                         borderRadius: 0,
-                     }}
         >
             {
                 claimingNft || paused ?
@@ -349,20 +343,6 @@ function GutterzMint(){
                             )
                     )
             }
-        </s.Container>
-    <s.Container className="id-check-window"
-                 flex={2}
-                 jc={"center"}
-                 ai={"center"}
-                 style={{
-                     // backgroundColor: "rgb(83,204,223)",
-                     marginTop: 20,
-                     marginBottom: 20,
-                     borderRadius: 0,
-                     borderTop: "1px solid rgb(66,66,66)",
-                     //boxShadow: "0px 5px 11px 2px rgba(0,0,0,0.7)",
-                 }}
-    >
         <s.SpacerSmall />
         <s.TextTitle
             style={{
@@ -373,6 +353,8 @@ function GutterzMint(){
                 fontWeight: "bold",
                 fontFamily: "Archivo",
                 color: "var(--accent-text)",
+                borderRadius: 0,
+                borderTop: "1px solid rgb(66,66,66)",
             }}
         >
 
@@ -446,8 +428,17 @@ function GutterzMint(){
 
         </s.TextDescription>
         <s.SpacerMedium />
+            {/* BOTTOM TEXT */}
+            <s.TextDescription
+                style={{
+                    textAlign: "center",
+                    color: "#777",
+                }}
+            >{blockchain.account === "" ||
+            blockchain.smartContract === null ? "Please connect to Ethereum " + CONFIG.NETWORK.NAME + " with a wallet that holds an OG  Gutter Cat Gang Species. Once you claim your free Gutterz, you cannot undo this action.\n" : "You are connected with address " + blockchain.account}
+            </s.TextDescription>
+            <s.SpacerMedium />
     </s.Container>
-    </>
     )
 }
 
