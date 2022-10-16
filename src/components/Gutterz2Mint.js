@@ -205,7 +205,10 @@ function GutterzMint(){
         >
             Mint for .07 ETH
         </StyledButton>
+        <hr class="hr-rule"/>
         </>
+
+
         )
     }
 
@@ -313,6 +316,7 @@ function GutterzMint(){
     };
 
     return(
+        
         <s.Container className="claim-window"
                      flex={2}
                      jc={"center"}
@@ -343,7 +347,7 @@ function GutterzMint(){
                             )
                     )
             }
-        <s.SpacerSmall />
+        
         <s.TextTitle
             style={{
                 textAlign: "center",
@@ -353,11 +357,9 @@ function GutterzMint(){
                 fontWeight: "bold",
                 fontFamily: "Archivo",
                 color: "var(--accent-text)",
-                borderRadius: 0,
-                borderTop: "1px solid rgb(66,66,66)",
+                borderRadius: 0
             }}
         >
-
             Karmeleon Claim Check
         </s.TextTitle>
         <s.TextDescription

@@ -122,7 +122,7 @@ function App() {
     <s.Screen
     className={"main"}>
       <s.Container
-        flex={1}
+      
         ai={"center"}
         style={{
           justifyContent: "space-between",
@@ -169,9 +169,9 @@ function App() {
       >
         {blockchain.account === "" ||
           blockchain.smartContract === null ? (
-          <s.TextTitle style={{textAlign: "center", fontSize: 44, marginTop: 20, marginBottom: 20, lineHeight: 1.2, fontFamily: "PxGrotesk Bold", color: "var(--accent-text)"}}>
+          <s.TextTitle style={{textAlign: "center", fontSize: 44, marginTop: 20, marginBottom: 20, lineHeight: 1.2, fontFamily: "Archivo", fontWeight: "bold", color: "var(--accent-text)"}}>
             GUTTERZ SPECIES 2
-            <s.TextDescription style={{ textAlign: "center", fontFamily:"PxGrotesk Regular", marginTop:6, color: "var(--accent-text)" }}>
+            <s.TextDescription style={{ textAlign: "center", fontFamily:"Archivo", marginTop:6, color: "var(--accent-text)" }}>
               CONNECT WALLET FOR ELIGIBILITY
             </s.TextDescription>
           </s.TextTitle>
