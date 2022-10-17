@@ -1,7 +1,7 @@
 {
   "INFURA_ID": "1433395633c5411ca33ffd2329dea25b",
   "CONTRACT_ADDRESS": "0x7b01Cb6641E60EADA425ac4a47ee55722DE14e70",
-  "SCAN_LINK": "https://etherscan.io/address/0xFF80c9AA84334aE36d62ADCbaf5D424A64e0Ce6D",
+  "SCAN_LINK": "https://etherscan.io/address/0x7b01Cb6641E60EADA425ac4a47ee55722DE14e70",
   "NETWORK": {
     "_NETWORK_OPTIONS_COMMENT_": "Ethereum: Name=mainnet, ID=1  &  Sepolia: Name=sepolia, ID=11155111",
     "NAME": "Mainnet",
@@ -15,7 +15,7 @@
   "DISPLAY_COST": 0.0,
   "GAS_LIMIT": 655000,
   "MARKETPLACE": "OpenSea",
-  "MARKETPLACE_LINK": "https://opensea.io/collection/gutterz",
+  "MARKETPLACE_LINK": "https://opensea.io/collection/gutterz2",
   "SHOW_BACKGROUND": true
 }
 

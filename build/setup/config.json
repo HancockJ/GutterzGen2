@@ -1,18 +1,21 @@
 {
-  "CONTRACT_ADDRESS": "0x7885ac7230b5F0e4d0d271E8244B897488BD0E36",
-  "SCAN_LINK": "https://rinkeby.etherscan.io/address/0x7885ac7230b5F0e4d0d271E8244B897488BD0E36",
+  "INFURA_ID": "1433395633c5411ca33ffd2329dea25b",
+  "CONTRACT_ADDRESS": "0x7b01Cb6641E60EADA425ac4a47ee55722DE14e70",
+  "SCAN_LINK": "https://etherscan.io/address/0x7b01Cb6641E60EADA425ac4a47ee55722DE14e70",
   "NETWORK": {
-    "NAME": "Rinkeby",
+    "_NETWORK_OPTIONS_COMMENT_": "Ethereum: Name=mainnet, ID=1  &  Sepolia: Name=sepolia, ID=11155111",
+    "NAME": "Mainnet",
     "SYMBOL": "ETH",
-    "ID": 4
+    "ID": 1
   },
-  "NFT_NAME": "Gutterz",
-  "SYMBOL": "GTRZ",
-  "MAX_SUPPLY": 3000,
+  "NFT_NAME": "Gutterz 2",
+  "SYMBOL": "GTRZ2",
+  "MAX_SUPPLY": 1000,
   "WEI_COST": 0,
   "DISPLAY_COST": 0.0,
   "GAS_LIMIT": 655000,
   "MARKETPLACE": "OpenSea",
-  "MARKETPLACE_LINK": "https://opensea.io/collection/gutterz",
+  "MARKETPLACE_LINK": "https://opensea.io/collection/gutterz2",
   "SHOW_BACKGROUND": true
 }
+
