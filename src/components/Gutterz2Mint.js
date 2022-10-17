@@ -29,7 +29,6 @@ function GutterzMint(){
     const [claimingNft, setClaimingNft] = useState(false);
     const [mintAmount, setMintAmount] = useState(1);
     const [paused, setPaused] = useState(true);
-    const [publicMint, setPublicMint] = useState(true);
     const [publicCost, setPublicCost] = useState(70000000000000000)
     const [karmID, setKarmID] = useState(0)
     const [status, setStatus] = useState("")
@@ -90,14 +89,16 @@ function GutterzMint(){
     };
 
     const mint = () => {
-        let gasLimit = CONFIG.GAS_LIMIT;
-        let totalGasLimit = String(gasLimit * mintAmount);
+        // let gasLimit = CONFIG.GAS_LIMIT;
+        // let totalGasLimit = String(gasLimit * mintAmount);
         setFeedback(`Sit tight while we mint your ${CONFIG.NFT_NAME}...`)
         setClaimingNft(true);
         if(eligibleCount < 1){
-            mintPublic(totalGasLimit);
+            let gasLimit = 70328 + (mintAmount * 26000)
+            mintPublic(gasLimit);
         }else{
-            mintHolders(totalGasLimit);
+            let gasLimit = 260493 + (mintAmount * 46000)
+            mintHolders(gasLimit);
         }
     }
 
