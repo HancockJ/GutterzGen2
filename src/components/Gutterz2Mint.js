@@ -89,23 +89,18 @@ function GutterzMint(){
     };
 
     const mint = () => {
-        // let gasLimit = CONFIG.GAS_LIMIT;
-        // let totalGasLimit = String(gasLimit * mintAmount);
         setFeedback(`Sit tight while we mint your ${CONFIG.NFT_NAME}...`)
         setClaimingNft(true);
         if(eligibleCount < 1){
-            let gasLimit = 70328 + (mintAmount * 26000)
-            mintPublic(gasLimit);
+            mintPublic();
         }else{
-            let gasLimit = 260493 + (mintAmount * 46000)
-            mintHolders(gasLimit);
+            mintHolders();
         }
     }
 
-    const mintPublic = (totalGasLimit) => {
+    const mintPublic = () => {
         const totalCostWei = (publicCost * mintAmount);
         blockchain.smartContract.methods.publicMint(mintAmount).send({
-            gasLimit: String(totalGasLimit),
             to: CONFIG.CONTRACT_ADDRESS,
             from: blockchain.account,
             value: totalCostWei,
@@ -117,9 +112,8 @@ function GutterzMint(){
         });
     };
 
-    const mintHolders = (totalGasLimit) => {
+    const mintHolders = () => {
         blockchain.smartContract.methods.holdersMint(mintAmount).send({
-            gasLimit: String(totalGasLimit),
             to: CONFIG.CONTRACT_ADDRESS,
             from: blockchain.account,
         }).once("error", (err) => {
