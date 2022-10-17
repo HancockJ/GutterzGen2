@@ -72,6 +72,7 @@ body {
 .nav {
   display: flex;
   padding: 24px 28px;
+  font-weight: 700;
 }
 .nav a {
   display: flex;
