@@ -347,88 +347,93 @@ function GutterzMint(){
                             )
                     )
             }
-        
-        <s.TextTitle
-            style={{
-                textAlign: "center",
-                fontSize: 28,
-                marginBottom: 8,
-                lineHeight: 1.2,
-                fontWeight: "bold",
-                fontFamily: "Archivo",
-                color: "var(--accent-text)",
-                borderRadius: 0
-            }}
-        >
-            Karmeleon Claim Check
-        </s.TextTitle>
-        <s.TextDescription
-            style={{
-                textAlign: "center",
-                color: "var(--primary-text)",
-                marginBottom: "10px"
-            }}
-        >
-            {blockchain.account === "" ||
-            blockchain.smartContract === null ? (
-                    <p>You must be connected to the network to use this feature.</p>
-                )
-                :
-                (
-                    <div>
-                        <p>Enter the ID of any Karmeleon to see if it's been used to claim a Gutterz Species 2.</p>
-                        <div className="flex-container claim-check-wrapper">KARMELEON #&nbsp;&nbsp;
-                            <input
-                                type="text"
-                                maxLength={4}
-                                pattern="[0-9]*"
-                                id="karmID"
-                                name="karmID"
-                                className="claim-input"
-                                onChange={handleKarmIDChange}
-                                value={karmID}
-                                onKeyPress={(event) => {
-                                    if (!/\d/.test(event.key)) {
-                                        event.preventDefault();
-                                    }
-                                }}
-                            />
-                            <StyledButton
-                                className="claim-button"
+            {
+                paused ? null : (
+                    <>
+                        <s.TextTitle
+                            style={{
+                                textAlign: "center",
+                                fontSize: 28,
+                                marginBottom: 8,
+                                lineHeight: 1.2,
+                                fontWeight: "bold",
+                                fontFamily: "Archivo",
+                                color: "var(--accent-text)",
+                                borderRadius: 0
+                            }}
+                        >
+                            Karmeleon Claim Check
+                        </s.TextTitle>
+                        <s.TextDescription
+                            style={{
+                                textAlign: "center",
+                                color: "var(--primary-text)",
+                                marginBottom: "10px"
+                            }}
+                        >
+                            {blockchain.account === "" ||
+                            blockchain.smartContract === null ? (
+                                    <p>You must be connected to the network to use this feature.</p>
+                                )
+                                :
+                                (
+                                    <div>
+                                        <p>Enter the ID of any Karmeleon to see if it's been used to claim a Gutterz Species 2.</p>
+                                        <div className="flex-container claim-check-wrapper">KARMELEON #&nbsp;&nbsp;
+                                            <input
+                                                type="text"
+                                                maxLength={4}
+                                                pattern="[0-9]*"
+                                                id="karmID"
+                                                name="karmID"
+                                                className="claim-input"
+                                                onChange={handleKarmIDChange}
+                                                value={karmID}
+                                                onKeyPress={(event) => {
+                                                    if (!/\d/.test(event.key)) {
+                                                        event.preventDefault();
+                                                    }
+                                                }}
+                                            />
+                                            <StyledButton
+                                                className="claim-button"
+                                                style={{
+                                                    paddingTop: 21,
+                                                    paddingBottom: 18,
+                                                    paddingLeft: 20,
+                                                    paddingRight: 20,
+                                                    fontSize: 23,
+                                                    lineHeight: 1,
+                                                    textTransform: "uppercase",
+                                                    backgroundColor: "#6c3aad",
+                                                    color: "#fff"
+                                                }
+                                                }
+                                                disabled={claimingNft ? 1 : 0}
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    checkKarmeleonStatus();
+                                                }}
+                                            >
+                                                Check Status
+                                            </StyledButton>
+                                        </div>
+                                    </div>
+                                )
+                            }
+                            <s.TextDescription
                                 style={{
-                                    paddingTop: 21,
-                                    paddingBottom: 18,
-                                    paddingLeft: 20,
-                                    paddingRight: 20,
-                                    fontSize: 23,
-                                    lineHeight: 1,
-                                    textTransform: "uppercase",
-                                    backgroundColor: "#6c3aad",
-                                    color: "#fff"
-                                }
-                                }
-                                disabled={claimingNft ? 1 : 0}
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    checkKarmeleonStatus();
+                                    textAlign: "center",
+                                    color: "#cbdb70",
                                 }}
                             >
-                                Check Status
-                            </StyledButton>
-                        </div>
-                    </div>
+                                {status}
+                            </s.TextDescription>
+                        </s.TextDescription>
+                    </>
                 )
             }
-            <s.TextDescription
-                style={{
-                    textAlign: "center",
-                    color: "#cbdb70",
-                }}
-            >
-                {status}
-            </s.TextDescription>
 
-        </s.TextDescription>
         <s.SpacerMedium />
             {/* BOTTOM TEXT */}
             <s.TextDescription

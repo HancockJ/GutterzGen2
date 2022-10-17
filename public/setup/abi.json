@@ -184,7 +184,7 @@
 	},
 	{
 		"inputs": [],
-		"name": "PUBLIC_MINT_ON",
+		"name": "REQUIRE_GUTTERZ",
 		"outputs": [
 			{
 				"internalType": "bool",
@@ -589,7 +589,7 @@
 				"type": "bool"
 			}
 		],
-		"name": "setPublicMint",
+		"name": "setRequireGutterz",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -666,19 +666,6 @@
 				"internalType": "string",
 				"name": "",
 				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "totalKarmeleonSupply",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
 			}
 		],
 		"stateMutability": "view",
@@ -764,19 +751,6 @@
 		"name": "withdraw",
 		"outputs": [],
 		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "yourGutterzSupply",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
 		"type": "function"
 	}
 ]
