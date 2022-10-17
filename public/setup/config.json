@@ -10,7 +10,7 @@
   },
   "NFT_NAME": "Gutterz Species 2",
   "SYMBOL": "GTRZ2",
-  "MAX_SUPPLY": 2000,
+  "MAX_SUPPLY": 1000,
   "WEI_COST": 0,
   "DISPLAY_COST": 0.0,
   "GAS_LIMIT": 655000,
