@@ -1,14 +1,14 @@
 {
   "INFURA_ID": "1433395633c5411ca33ffd2329dea25b",
-  "CONTRACT_ADDRESS": "0xFF80c9AA84334aE36d62ADCbaf5D424A64e0Ce6D",
+  "CONTRACT_ADDRESS": "0x7b01Cb6641E60EADA425ac4a47ee55722DE14e70",
   "SCAN_LINK": "https://etherscan.io/address/0xFF80c9AA84334aE36d62ADCbaf5D424A64e0Ce6D",
   "NETWORK": {
     "_NETWORK_OPTIONS_COMMENT_": "Ethereum: Name=mainnet, ID=1  &  Sepolia: Name=sepolia, ID=11155111",
-    "NAME": "sepolia",
+    "NAME": "Mainnet",
     "SYMBOL": "ETH",
-    "ID": 11155111
+    "ID": 1
   },
-  "NFT_NAME": "Gutterz Species 2",
+  "NFT_NAME": "Gutterz 2",
   "SYMBOL": "GTRZ2",
   "MAX_SUPPLY": 1000,
   "WEI_COST": 0,
